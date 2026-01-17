@@ -157,7 +157,7 @@ nav a:hover {
 
 /* --- SECTIONS --- */
 .section {
-  padding: 60px 5%;
+  padding: 10px 5%;
 }
 
 .section-title {
@@ -451,4 +451,5 @@ html {
     /* Forces 4 equal columns */
     gap: 20px;
   }
+
 }
