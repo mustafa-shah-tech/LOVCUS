@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <p style="font-size: 0.8rem; margin-top: 20px;">&copy; 2026 LOVCUS Pakistan.</p>
         </footer>
-        <a href="https://wa.me/923001234567" class="whatsapp-float" target="_blank">
+        <a href="https://wa.me/03270880908" class="whatsapp-float" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 35px; height: 35px; margin-top: 2px;">
         </a>
         `;
@@ -287,4 +287,5 @@ function loadHomeProducts() {
         `;
     }).join('');
 }
+
 
