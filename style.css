@@ -1,0 +1,454 @@
+/* --- CSS VARIABLES & RESET --- */
+:root {
+  --primary-color: #e8d3d3;
+  /* Soft Pink */
+  --secondary-color: #e58394;
+  /* Beige */
+  --accent-color: #005f73;
+  /* Muted Gold */
+  --text-dark: #333333;
+  --text-light: #666666;
+  --white: #ffffff;
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Poppins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--secondary-color);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* --- HEADER & NAV --- */
+header {
+  background: #f57b90;
+  padding: 15px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Find existing .logo and update it to this: */
+.logo {
+  display: flex;
+  /* Aligns image and text side-by-side */
+  align-items: center;
+  /* Centers them vertically */
+  gap: 10px;
+  /* Adds space between logo and text */
+
+  /* Keep your existing font settings below */
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* Add this NEW style to control the logo size */
+.logo-img {
+  height: 40px;
+  /* Adjust this number to make it bigger/smaller */
+  width: auto;
+  /* Keeps the shape correct */
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  background: linear-gradient(rgba(232, 211, 211, 0.8),
+      rgba(232, 211, 211, 0.8)),
+    url("images/Background.jpeg");
+  /* Placeholder BG */
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 200px 20px;
+  color: var(--text-dark);
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--accent-color);
+  color: var(--white);
+  border-radius: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  background: #b08d4b;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  margin-left: 10px;
+}
+
+.btn-outline:hover {
+  background: var(--accent-color);
+  color: var(--white);
+}
+
+/* --- SECTIONS --- */
+.section {
+  padding: 60px 5%;
+}
+
+.section-title {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: var(--accent-color);
+}
+
+/* --- PRODUCT GRID --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 80%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 15px;
+}
+
+.product-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* --- FORMS --- */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.alert-box {
+  background: #fff3cd;
+  color: #856404;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ffeeba;
+}
+
+/* --- FOOTER --- */
+footer {
+  background: var(--primary-color);
+  padding: 40px 5%;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-links {
+  margin: 20px 0;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  font-size: 0.9rem;
+}
+
+/* --- STICKY WHATSAPP --- */
+/* --- WHATSAPP HOVER ANIMATION --- */
+
+.whatsapp-float {
+  /* Basic style (Keep your position/color settings) */
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Smooth transition for the effect */
+  transition: all 0.3s ease-in-out;
+}
+
+/* This part triggers ONLY when mouse is ON the button */
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-5px);
+  /* Grows bigger and moves up slightly */
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+  /* Adds a green glow shadow */
+}
+
+.whatsapp-float:hover {
+  background-color: #20ba5a;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  nav.active ul {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+
+/* --- FOOTER SOCIAL ICONS --- */
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  /* Space between icons */
+  margin-top: 20px;
+  align-items: center;
+}
+
+.footer-socials img {
+  width: 30px;
+  /* Icon size */
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.footer-socials img:hover {
+  transform: translateY(-5px);
+  /* Moves up slightly when you touch it */
+}
+
+/* --- POLICY PAGE STYLES --- */
+.policy-item {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  /* Adds a light line between sections */
+  padding-bottom: 15px;
+}
+
+.policy-item:last-child {
+  border-bottom: none;
+  /* No line under the last item */
+}
+
+.policy-item h3 {
+  font-family: var(--font-heading);
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.policy-item p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* --- MOBILE OPTIMIZATION --- */
+
+@media (max-width: 768px) {
+
+  /* 1. Two-Column Product Grid */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* Forces 2 columns */
+    gap: 15px;
+    /* Smaller gap between items */
+  }
+
+  /* Adjust image height for the smaller columns */
+  .product-card img {
+    height: 180px;
+    /* Shorter images so they fit better */
+  }
+
+  /* Make text smaller so it doesn't break lines */
+  .product-title {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* 2. Compact Hero Section */
+  .hero {
+    padding: 60px 20px;
+    /* Reduced from 100px */
+    background-position: center top;
+    /* Focus on faces/top of image */
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    /* Smaller headline */
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* 3. Better Mobile Menu */
+  nav ul {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  nav a {
+    display: block;
+    /* Makes the whole row clickable */
+    padding: 15px 0;
+    /* Adds space for "fat fingers" */
+    font-size: 1.1rem;
+    /* Bigger text */
+    border-bottom: 1px solid #eee;
+    /* distinct lines between links */
+  }
+}
+
+/* Add this to the very top of your CSS or inside the 'body' rule */
+body,
+html {
+  overflow-x: hidden;
+  /* Stops side-to-side scrolling */
+}
+
+/* --- DESKTOP GRID (4 Items per Row) --- */
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    /* Forces 4 equal columns */
+    gap: 20px;
+  }
+}
