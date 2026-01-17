@@ -145,8 +145,8 @@ function loadProductDetail() {
                         <strong>⚠️ Payment Policy:</strong> Minimum 30% advance payment required. No Full Cash on Delivery available.
                     </div>
 
-                    <button onclick="orderViaWhatsApp('${product.name}', ${product.price})" class="btn" style="width: 100%;">Order via WhatsApp</button>
-                    <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">Delivery: 3-5 Working Days via TCS/Leopard</p>
+                    <button onclick="orderViaWhatsApp('${product.name}', ${product.price})" class="btn" style="width: 100%;">Order</button>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">Delivery: 3-5 Working Days </p>
                 </div>
             </div>
         `;
@@ -287,3 +287,4 @@ function loadHomeProducts() {
         `;
     }).join('');
 }
+
