@@ -169,34 +169,38 @@ function orderViaWhatsApp(itemName, price) {
   window.open(url, "_blank");
 }
 
-/*SubmitCustomOrder FUNCTION */
+/* SubmitCustomOrder FUNCTION (Updated with Contact & Address) */
 function submitCustomOrder(event) {
     event.preventDefault();
-    const phone = "03270880908"; // YOUR NUMBER
+    const phone = "923270880908"; // Format: 923... (No '0' at start)
 
     // 1. Get Text Values
     const name = document.getElementById('c-name').value;
+    const contact = document.getElementById('c-contact').value; // NEW
+    const address = document.getElementById('c-address').value; // NEW
     const type = document.getElementById('c-type').value;
     const desc = document.getElementById('c-desc').value;
-    const size = document.getElementById('c-size').value; // Get Size
+    
+    // Get Size (Safe check in case you removed the dropdown)
+    const sizeField = document.getElementById('c-size');
+    const size = sizeField ? sizeField.value : "Standard"; 
 
-    // 2. Get Selected Colors (Find all boxes that are checked)
+    // 2. Get Selected Colors
     const colorCheckboxes = document.querySelectorAll('input[name="color"]:checked');
     let selectedColors = [];
     colorCheckboxes.forEach((checkbox) => {
         selectedColors.push(checkbox.value);
     });
-    
-    // If they didn't pick a color, write "None"
     const colorString = selectedColors.length > 0 ? selectedColors.join(", ") : "None selected";
 
     // 3. Create the WhatsApp Message
-    const message = `Hi LOVCUS! Custom Order Request.\n\n👤 Name: ${name}\n📦 Type: ${type}\n📏 Size: ${size}\n🎨 Colors: ${colorString}\n📝 Details: ${desc}`;
+    const message = `Hi LOVCUS! Custom Order Request.\n\n👤 Name: ${name}\n📞 Contact: ${contact}\n🏠 Address: ${address}\n📦 Type: ${type}\n📏 Size: ${size}\n🎨 Colors: ${colorString}\n📝 Details: ${desc}`;
     
     // 4. Send
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }
+  
 /* --- HOME PAGE SPECIFIC LOADER (Limit 8 items) --- */
 function loadHomeProducts() {
   const grid = document.getElementById("product-grid");
