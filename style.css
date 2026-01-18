@@ -104,7 +104,7 @@ nav a:hover {
 .hero {
   background: linear-gradient(rgba(232, 211, 211, 0.8),
       rgba(232, 211, 211, 0.8)),
-    url("images/Background.jpeg");
+    url("images/background.jpeg");
   /* Placeholder BG */
   background-size: cover;
   background-position: center;
@@ -473,3 +473,4 @@ html {
 .seo-links a:hover {
   color: #000;
 }
+
