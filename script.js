@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="custom.html">Custom Order</a></li>
                     <li><a href="policy.html">Policy</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
         </header>
@@ -163,7 +164,7 @@ function loadProductDetail() {
 
 // --- WHATSAPP ORDER LOGIC ---
 function orderViaWhatsApp(itemName, price) {
-  const phone = "03270880908"; // YOUR NUMBER
+  const phone = "923270880908"; // YOUR NUMBER
   const message = `Hi LOVCUS! I want to order: ${itemName} (PKR ${price}). Please confirm availability.`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
@@ -200,7 +201,7 @@ function submitCustomOrder(event) {
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }
-  
+
 /* --- HOME PAGE SPECIFIC LOADER (Limit 8 items) --- */
 function loadHomeProducts() {
   const grid = document.getElementById("product-grid");
