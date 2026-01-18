@@ -104,7 +104,7 @@ nav a:hover {
 .hero {
   background: linear-gradient(rgba(232, 211, 211, 0.8),
       rgba(232, 211, 211, 0.8)),
-    url("images/background.jpeg");
+    url("images/Background.jpeg");
   /* Placeholder BG */
   background-size: cover;
   background-position: center;
@@ -473,4 +473,17 @@ html {
 .seo-links a:hover {
   color: #000;
 }
-
+/* SEO Description Text */
+.seo-text {
+  max-width: 900px;
+  margin: 50px auto 20px;
+  padding: 20px 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #444;
+  background: #fff8fb;
+  border-left: 4px solid #e91e63;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
