@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Custom Order | LOVCUS</title>
+    <title>Our Story | LOVCUS</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap"
@@ -14,43 +14,49 @@
     <div id="header-placeholder"></div>
 
     <section class="section">
-      <h1 class="section-title">Customize Your Gift</h1>
-      <div class="form-container">
-        <div class="alert-box">
-          Please provide details below. We will discuss pricing on WhatsApp.
-          <strong>30% Advance Required.</strong>
+      <div
+        class="form-container"
+        style="text-align: center; background: #fff5f5"
+      >
+        <h1 class="section-title">The LOVCUS Story</h1>
+
+        <p style="font-size: 1.1rem; margin-bottom: 20px">
+          <strong>"It started with a simple thread and a lot of love."</strong>
+        </p>
+
+        <p style="margin-bottom: 20px; text-align: left">
+          LOVCUS wasn't born in a factory; it was born in a home. We believe
+          that gifts shouldn't just be "things" you buy off a shelf—they should
+          be memories you can hold.
+        </p>
+
+        <p style="margin-bottom: 20px; text-align: left">
+          Every bracelet, bangle, and gift box is
+          <strong>handcrafted by our family artisans (led by Mom)</strong>. When
+          you order from us, you aren't just paying for materials; you are
+          paying for the time, patience, and care that goes into tying every
+          knot and polishing every bead.
+        </p>
+
+        <h3 style="color: var(--accent-color); margin-top: 30px">
+          Our Mission
+        </h3>
+        <p>
+          To turn emotions into products. Whether it's a promise to your best
+          friend or a gesture of love to a partner, we want to help you say it
+          without words.
+        </p>
+
+        <div
+          style="
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+          "
+        >
+          <p><em>Thank you for trusting us with your memories.</em></p>
+          <p><strong>— The LOVCUS Family —</strong></p>
         </div>
-        <form onsubmit="submitCustomOrder(event)">
-          <div class="form-group">
-            <label>Your Name</label>
-            <input
-              type="text"
-              id="c-name"
-              required
-              placeholder="Enter your name"
-            />
-          </div>
-          <div class="form-group">
-            <label>Product Type</label>
-            <select id="c-type">
-              <option>Bracelet</option>
-              <option>Necklace</option>
-              <option>Gift Box</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Customization Details (Text, Color, Size)</label>
-            <textarea
-              id="c-desc"
-              rows="5"
-              required
-              placeholder="I need a pink bracelet with name 'Sarah' on it..."
-            ></textarea>
-          </div>
-          <button type="submit" class="btn" style="width: 100%">
-            Send to WhatsApp
-          </button>
-        </form>
       </div>
     </section>
     <p class="seo-links">
