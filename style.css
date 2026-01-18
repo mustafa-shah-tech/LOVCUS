@@ -451,5 +451,25 @@ html {
     /* Forces 4 equal columns */
     gap: 20px;
   }
+}
 
+/* Internal SEO Navigation Links */
+
+.seo-links {
+  text-align: center;
+  margin: 30px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.seo-links a {
+  text-decoration: none;
+  color: #b76e79;
+  /* soft luxury pink */
+  font-weight: 500;
+  margin: 0 12px;
+  transition: 0.3s;
+}
+
+.seo-links a:hover {
+  color: #000;
 }
