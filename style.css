@@ -487,4 +487,149 @@ html {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
+/* --- COLOR SWATCH STYLES --- */
 
+.color-options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Space between colors */
+    padding: 10px 0;
+}
+
+.color-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: #f9f9f9;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+/* Hide the actual checkbox input */
+.color-option input[type="checkbox"] {
+    display: none;
+}
+
+/* The Color Circle (Swatch) */
+.swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Makes it round */
+    margin-right: 8px;
+    display: inline-block;
+    border: 2px solid transparent; /* Invisible border normally */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* WHEN SELECTED: The magic happens here */
+.color-option input:checked + .swatch {
+    transform: scale(1.2); /* Grows bigger */
+    border: 2px solid #333; /* Adds a dark ring around the color */
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* Optional: Make the text bold when selected */
+.color-option input:checked ~ .c-text {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+/* --- CONTACT PAGE STYLES --- */
+
+.contact-wrapper {
+    max-width: 600px; /* Limits width for a neat look */
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.contact-item .icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contact-item .details {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-item .details strong {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.contact-item .details span {
+    font-size: 1rem;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+/* Social Buttons Grid */
+.social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.social-btn {
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+}
+
+.social-btn:hover {
+    opacity: 0.9;
+}
+
+.insta { background: #E1306C; }
+.fb { background: #1877F2; }
+.tiktok { background: #000000; }
+
+/* Closing Trust Box */
+.trust-box {
+    margin-top: 30px;
+    padding: 15px;
+    background: #fff0f5; /* Light pink background */
+    border-radius: 8px;
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    border: 1px dashed var(--accent-color);
+}
+
+/* Mobile Adjustment for Social Buttons */
+@media (max-width: 480px) {
+    .social-links-grid {
+        grid-template-columns: 1fr; /* Stack buttons on small phones */
+    }
+}
