@@ -28,7 +28,7 @@ const products = [
     image: "images/sweetheart-crystal.jpeg",
     desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
   },
-    {
+      {
     id: 4,
     name: "The Flutter Bracelet",
     price: 399.0,
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </header>
     `;
 
-  /* REPLACE THE FOOTER SECTION IN SCRIPT.JS WITH THIS */
+  /*THE FOOTER SECTION */
   const footerPlace = document.getElementById("footer-placeholder");
   if (footerPlace) {
     footerPlace.innerHTML = `
@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initialize Page Specific Logic
-  // 1. Check if we are on the Home Page (index.html or root /)
   const path = window.location.pathname;
   if (path.endsWith("index.html") || path === "/" || path.endsWith("/")) {
     loadHomeProducts(); // Loads only 8 items
@@ -170,10 +169,10 @@ function orderViaWhatsApp(itemName, price) {
   window.open(url, "_blank");
 }
 
-/* REPLACE YOUR OLD submitCustomOrder FUNCTION WITH THIS */
+/*SubmitCustomOrder FUNCTION */
 function submitCustomOrder(event) {
     event.preventDefault();
-    const phone = "03270880908"; // REPLACE WITH YOUR REAL NUMBER
+    const phone = "03270880908"; // YOUR NUMBER
 
     // 1. Get Text Values
     const name = document.getElementById('c-name').value;
@@ -319,6 +318,3 @@ function loadHomeProducts() {
     })
     .join("");
 }
-
-
-
