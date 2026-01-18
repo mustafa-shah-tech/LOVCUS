@@ -29,7 +29,7 @@ const products = [
     desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
   },
     {
-    id: 2,
+    id: 4,
     name: "The Flutter Bracelet",
     price: 399.0,
     category: "Bracelets",
@@ -319,5 +319,6 @@ function loadHomeProducts() {
     })
     .join("");
 }
+
 
 
