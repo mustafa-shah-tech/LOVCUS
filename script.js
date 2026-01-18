@@ -21,7 +21,7 @@ const products = [
     desc: "This is personalized stretch bracelet features black alphabet beads name customized, accented by alternating black and clear crackle-effect glass beads. The design is finished with three dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm.",
   },
   {
-    id: 2,
+    id: 3,
     name: "Sweetheart Crystal",
     price: 399.0,
     category: "custom",
@@ -319,4 +319,5 @@ function loadHomeProducts() {
     })
     .join("");
 }
+
 
