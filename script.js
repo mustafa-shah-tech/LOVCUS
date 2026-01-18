@@ -82,16 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initialize Page Specific Logic
-// Initialize Page Specific Logic
-    // 1. Check if we are on the Home Page (index.html or root /)
-    const path = window.location.pathname;
-    if (path.endsWith('index.html') || path === '/' || path.endsWith('/')) {
-        loadHomeProducts(); // Loads only 8 items
-    } else {
-        loadShop(); // Loads ALL items (for shop.html)
-    }
+  // 1. Check if we are on the Home Page (index.html or root /)
+  const path = window.location.pathname;
+  if (path.endsWith("index.html") || path === "/" || path.endsWith("/")) {
+    loadHomeProducts(); // Loads only 8 items
+  } else {
+    loadShop(); // Loads ALL items (for shop.html)
+  }
 
-    loadProductDetail();
+  loadProductDetail();
 });
 
 // --- MENU TOGGLE ---
@@ -115,7 +114,7 @@ function loadShop() {
                 <a href="product.html?id=${product.id}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
             </div>
         </div>
-    `
+    `,
     )
     .join("");
 }
@@ -163,36 +162,54 @@ function orderViaWhatsApp(itemName, price) {
   window.open(url, "_blank");
 }
 
+/* REPLACE YOUR OLD submitCustomOrder FUNCTION WITH THIS */
 function submitCustomOrder(event) {
-  event.preventDefault();
-  const phone = "03270880908"; // YOUR NUMBER
-  const name = document.getElementById("c-name").value;
-  const desc = document.getElementById("c-desc").value;
-  const type = document.getElementById("c-type").value;
+    event.preventDefault();
+    const phone = "03270880908"; // REPLACE WITH YOUR REAL NUMBER
 
-  const message = `Hi LOVCUS! I want a Custom Order.\nName: ${name}\nType: ${type}\nDetails: ${desc}`;
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+    // 1. Get Text Values
+    const name = document.getElementById('c-name').value;
+    const type = document.getElementById('c-type').value;
+    const desc = document.getElementById('c-desc').value;
+    const size = document.getElementById('c-size').value; // Get Size
+
+    // 2. Get Selected Colors (Find all boxes that are checked)
+    const colorCheckboxes = document.querySelectorAll('input[name="color"]:checked');
+    let selectedColors = [];
+    colorCheckboxes.forEach((checkbox) => {
+        selectedColors.push(checkbox.value);
+    });
+    
+    // If they didn't pick a color, write "None"
+    const colorString = selectedColors.length > 0 ? selectedColors.join(", ") : "None selected";
+
+    // 3. Create the WhatsApp Message
+    const message = `Hi LOVCUS! Custom Order Request.\n\n👤 Name: ${name}\n📦 Type: ${type}\n📏 Size: ${size}\n🎨 Colors: ${colorString}\n📝 Details: ${desc}`;
+    
+    // 4. Send
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
 }
 /* --- HOME PAGE SPECIFIC LOADER (Limit 8 items) --- */
 function loadHomeProducts() {
-    const grid = document.getElementById('product-grid');
-    if (!grid) return; // Stop if we are not on the Home Page
+  const grid = document.getElementById("product-grid");
+  if (!grid) return; // Stop if we are not on the Home Page
 
-    // 1. Get only the first 8 products
-    const limitedProducts = products.slice(0, 8);
+  // 1. Get only the first 8 products
+  const limitedProducts = products.slice(0, 8);
 
-    grid.innerHTML = limitedProducts.map(product => {
-        // Handle image logic (List vs Single)
-        let displayImage;
-        if (product.images && product.images.length > 0) {
-             displayImage = product.images[0];
-        } else {
-             displayImage = product.image;
-        }
+  grid.innerHTML = limitedProducts
+    .map((product) => {
+      // Handle image logic (List vs Single)
+      let displayImage;
+      if (product.images && product.images.length > 0) {
+        displayImage = product.images[0];
+      } else {
+        displayImage = product.image;
+      }
 
-        // 2. Render Card with 'onclick' to make the whole thing clickable
-        return `
+      // 2. Render Card with 'onclick' to make the whole thing clickable
+      return `
         <div class="product-card" onclick="window.location.href='product.html?id=${product.id}'" style="cursor: pointer;">
             <img src="${displayImage}" alt="${product.name}">
             <div class="product-info">
@@ -202,23 +219,25 @@ function loadHomeProducts() {
             </div>
         </div>
         `;
-    }).join('');
+    })
+    .join("");
 }
 // --- SHOP PAGE LOGIC (Safe Mode) ---
 function loadShop() {
-    const grid = document.getElementById('product-grid');
-    if (!grid) return;
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
 
-    grid.innerHTML = products.map(product => {
-        // Check for list OR single image
-        let displayImage;
-        if (product.images && product.images.length > 0) {
-             displayImage = product.images[0];
-        } else {
-             displayImage = product.image;
-        }
+  grid.innerHTML = products
+    .map((product) => {
+      // Check for list OR single image
+      let displayImage;
+      if (product.images && product.images.length > 0) {
+        displayImage = product.images[0];
+      } else {
+        displayImage = product.image;
+      }
 
-        return `
+      return `
         <div class="product-card">
             <img src="${displayImage}" alt="${product.name}">
             <div class="product-info">
@@ -228,23 +247,25 @@ function loadShop() {
             </div>
         </div>
         `;
-    }).join('');
+    })
+    .join("");
 }
 // --- SHOP PAGE LOGIC (UPDATED & SAFE) ---
 function loadShop() {
-    const grid = document.getElementById('product-grid');
-    if (!grid) return;
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
 
-    grid.innerHTML = products.map(product => {
-        // Safe Image Check: Uses 'images' list if available, otherwise 'image'
-        let displayImage;
-        if (product.images && product.images.length > 0) {
-             displayImage = product.images[0];
-        } else {
-             displayImage = product.image;
-        }
+  grid.innerHTML = products
+    .map((product) => {
+      // Safe Image Check: Uses 'images' list if available, otherwise 'image'
+      let displayImage;
+      if (product.images && product.images.length > 0) {
+        displayImage = product.images[0];
+      } else {
+        displayImage = product.image;
+      }
 
-        return `
+      return `
         <div class="product-card">
             <img src="${displayImage}" alt="${product.name}">
             <div class="product-info">
@@ -254,28 +275,30 @@ function loadShop() {
             </div>
         </div>
         `;
-    }).join('');
+    })
+    .join("");
 }
 
 // --- HOME PAGE LOGIC (LIMIT 8 ITEMS + BUTTON RESTORED) ---
 function loadHomeProducts() {
-    const grid = document.getElementById('product-grid');
-    if (!grid) return; 
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
 
-    // Cut the list to only the first 8 items
-    const limitedProducts = products.slice(0, 8);
+  // Cut the list to only the first 8 items
+  const limitedProducts = products.slice(0, 8);
 
-    grid.innerHTML = limitedProducts.map(product => {
-        // Safe Image Check
-        let displayImage;
-        if (product.images && product.images.length > 0) {
-             displayImage = product.images[0];
-        } else {
-             displayImage = product.image;
-        }
+  grid.innerHTML = limitedProducts
+    .map((product) => {
+      // Safe Image Check
+      let displayImage;
+      if (product.images && product.images.length > 0) {
+        displayImage = product.images[0];
+      } else {
+        displayImage = product.image;
+      }
 
-        // Render Card with CLICKABLE CARD + BUTTON
-        return `
+      // Render Card with CLICKABLE CARD + BUTTON
+      return `
         <div class="product-card" onclick="window.location.href='product.html?id=${product.id}'" style="cursor: pointer;">
             <img src="${displayImage}" alt="${product.name}">
             <div class="product-info">
@@ -285,7 +308,6 @@ function loadHomeProducts() {
             </div>
         </div>
         `;
-    }).join('');
+    })
+    .join("");
 }
-
-
