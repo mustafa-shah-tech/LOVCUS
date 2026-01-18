@@ -28,6 +28,14 @@ const products = [
     image: "images/sweetheart-crystal.jpeg",
     desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
   },
+    {
+    id: 2,
+    name: "The Flutter Bracelet",
+    price: 399.0,
+    category: "Bracelets",
+    image: "images/tooba.jpeg",
+    desc: "Personalized stretch bracelet features black alphabet beads spelling customized name accented by alternating black and clear crackle-effect glass beads. The design is finished with three dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm.",
+  },
 ];
 
 // --- DYNAMIC HEADER & FOOTER INJECTION ---
@@ -311,3 +319,4 @@ function loadHomeProducts() {
     })
     .join("");
 }
+
