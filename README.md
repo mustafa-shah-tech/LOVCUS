@@ -2,7 +2,7 @@
 # 🌸 LOVCUS | Made with Love
 
 **Handmade Bracelets, Gifts & Custom Designs**  
-[🌐 Visit Our Website](https://lovcus.store)
+<a href="https://lovcus.store" target="_blank">🌐 Visit Our Website</a>
 
 ---
 
