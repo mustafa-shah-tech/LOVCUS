@@ -2,20 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- PRIMARY SEO -->
     <title>LOVCUS Handmade Jewelry | Custom Bracelets in Pakistan</title>
     <meta
       name="description"
-      content="LOVCUS offers handmade and customized bracelets made with love. Perfect gifts for couples and special moments."
+      content="LOVCUS offers handmade and customized bracelets made with love. Perfect gifts for couples, friends, and special moments. Shop online in Pakistan."
     />
-    <link rel="canonical" href="https://lovcus.store/index.html">
+    <meta
+      name="keywords"
+      content="handmade jewelry Pakistan, custom bracelets, couple bracelets, friendship bands, personalized gifts Pakistan, LOVCUS jewelry, online gift shop"
+    />
+    <meta name="author" content="LOVCUS" />
+    <link rel="canonical" href="https://lovcus.store/index.html" />
 
+    <!-- OPEN GRAPH (Facebook/WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lovcus.store/" />
+    <meta property="og:title" content="LOVCUS - Handmade with Love ❤️" />
+    <meta
+      property="og:description"
+      content="Discover unique handmade jewelry and custom bracelets that turn moments into memories. Nationwide delivery in Pakistan."
+    />
+    <meta property="og:image" content="https://lovcus.store/images/logo.png" />
+
+    <!-- PERFORMANCE & ICONS -->
     <link rel="icon" href="images/logo.png" type="image/png" />
-
     <link rel="stylesheet" href="style.css" />
 
+    <!-- Preload Critical Hero Image for Speed -->
+    <link rel="preload" as="image" href="images/background.jpeg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -30,26 +51,25 @@
   <body>
     <div id="header-placeholder"></div>
 
+    <!-- Hero Section -->
     <section class="hero">
       <h1>Handmade & Customized Jewelry by LOVCUS</h1>
       <p>Handmade bracelets and custom jewelry made with love.</p>
       <a href="shop.html" class="btn">Shop Now</a>
-      <a href="custom.html" class="btn btn-outline">Customize Yours</a>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">Handmade & Custom Bracelets by LOVCUS</h2>
-    </section>
-
-    
-
+    <!-- Featured Products Preview -->
     <section class="section" style="background: white">
+      <h2 class="section-title">Handmade &amp; Custom Bracelets by LOVCUS</h2>
       <h2 class="section-title">New Arrivals</h2>
-      <div id="product-grid" class="product-grid"></div>
+      <div id="product-grid" class="product-grid">
+        <!-- JS will inject products here -->
+      </div>
       <div style="text-align: center; margin-top: 30px">
         <a href="shop.html" class="btn btn-outline">View All Products</a>
       </div>
     </section>
+    <!-- Why Us -->
     <section class="section">
       <h2 class="section-title">Why LOVCUS?</h2>
       <div
@@ -75,19 +95,17 @@
         </div>
       </div>
     </section>
+    <!-- SEO Content Block (Good for Ranking) -->
     <p class="seo-text">
-      LOVCUS is a handmade jewelry brand in Pakistan, specializing in customized
-      bracelets for couples and gifts. Each bracelet is crafted with care,
-      quality materials, and emotional value. Our mission is to deliver
-      meaningful jewelry that lasts.
-    </p>
-    <p class="seo-links">
-      <a href="index.html">Home</a> |
-      <a href="shop.html">Shop Bracelets</a>
+      LOVCUS is a premier handmade jewelry brand in Pakistan, specializing in
+      customized bracelets for couples, friends, and loved ones. Each bracelet
+      is crafted with care, using quality beads and charms to add emotional
+      value. Our mission is to deliver meaningful jewelry that lasts a lifetime.
     </p>
 
     <div id="footer-placeholder"></div>
 
-    <script src="script.js"></script>
+    <!-- Defer Script for Faster Load -->
+    <script src="script.js" defer></script>
   </body>
 </html>
