@@ -1,12 +1,9 @@
 /* --- CSS VARIABLES & RESET --- */
 :root {
-  --primary-color: #e8d3d3;
-  /* Soft Pink */
-  --secondary-color: #e58394;
-  /* Beige */
-  --accent-color: #005f73;
-  /* Muted Gold */
-  --text-dark: #333333;
+  --primary-color: #F7D1D3; /* Soft Pink */
+  --secondary-color: #944044; /* Dark Red/Brown */
+  --accent-color: #944044; /* Muted Gold/Red */
+  --text-dark: #2b2b2b;
   --text-light: #666666;
   --white: #ffffff;
   --font-heading: "Playfair Display", serif;
@@ -19,10 +16,14 @@
   box-sizing: border-box;
 }
 
+body, html {
+  overflow-x: hidden; /* Stops side-to-side scrolling */
+}
+
 body {
   font-family: var(--font-body);
   color: var(--text-dark);
-  background-color: var(--secondary-color);
+  background-color: #fff8f6;
   line-height: 1.6;
 }
 
@@ -43,7 +44,7 @@ img {
 
 /* --- HEADER & NAV --- */
 header {
-  background: #f57b90;
+  background: #944044;
   padding: 15px 5%;
   position: sticky;
   top: 0;
@@ -54,16 +55,10 @@ header {
   align-items: center;
 }
 
-/* Find existing .logo and update it to this: */
 .logo {
   display: flex;
-  /* Aligns image and text side-by-side */
   align-items: center;
-  /* Centers them vertically */
   gap: 10px;
-  /* Adds space between logo and text */
-
-  /* Keep your existing font settings below */
   font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 700;
@@ -71,12 +66,86 @@ header {
   letter-spacing: 1px;
 }
 
-/* Add this NEW style to control the logo size */
 .logo-img {
   height: 40px;
-  /* Adjust this number to make it bigger/smaller */
   width: auto;
-  /* Keeps the shape correct */
+}
+
+/* HEADER ICONS (Search & Cart) */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-icon-btn, 
+.cart-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white; /* Made white to match header */
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.search-icon-btn:hover, 
+.cart-icon-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Red Badge for Cart Count */
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #ff4757;
+    color: white;
+    font-size: 0.7rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 1px solid white;
+}
+
+/* Hidden Search Bar */
+.search-container {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 999;
+    text-align: center;
+}
+
+.search-container.active {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+.search-input {
+    width: 80%;
+    max-width: 500px;
+    padding: 10px 15px;
+    border: 2px solid var(--accent-color);
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 nav ul {
@@ -88,28 +157,20 @@ nav a {
   font-weight: 500;
   font-size: 0.9rem;
   text-transform: uppercase;
+  color: white;
 }
 
 nav a:hover {
-  color: var(--accent-color);
-}
-
-.mobile-menu-btn {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+  color: var(--primary-color);
 }
 
 /* --- HERO SECTION --- */
 .hero {
-  background: linear-gradient(rgba(232, 211, 211, 0.8),
-      rgba(232, 211, 211, 0.8)),
-    url("images/background.jpeg");
-  /* Placeholder BG */
+  background: linear-gradient(rgba(255, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url("images/background.jpeg");
   background-size: cover;
   background-position: center;
   text-align: center;
-  padding: 200px 20px;
+  padding: 140px 20px;
   color: var(--text-dark);
 }
 
@@ -117,18 +178,23 @@ nav a:hover {
   font-family: var(--font-heading);
   font-size: 3rem;
   margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .hero p {
   font-size: 1.2rem;
   margin-bottom: 30px;
   font-style: italic;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
+/* --- BUTTONS --- */
 .btn {
   display: inline-block;
   padding: 12px 30px;
-  background: var(--accent-color);
+  background: #944044;
   color: var(--white);
   border-radius: 30px;
   font-weight: 600;
@@ -136,18 +202,19 @@ nav a:hover {
   font-size: 0.9rem;
   cursor: pointer;
   border: none;
+  transition: 0.3s;
 }
 
 .btn:hover {
-  background: #b08d4b;
+  background: #7a3336;
   transform: translateY(-2px);
 }
 
 .btn-outline {
-  background: transparent;
-  border: 2px solid var(--accent-color);
-  color: var(--accent-color);
-  margin-left: 10px;
+    background: transparent;
+    border: 1px solid #944044;
+    color: #944044;
+    margin: 5px;
 }
 
 .btn-outline:hover {
@@ -157,15 +224,18 @@ nav a:hover {
 
 /* --- SECTIONS --- */
 .section {
-  padding: 10px 5%;
+  padding: 40px 5%;
 }
 
 .section-title {
   text-align: center;
   font-family: var(--font-heading);
+  background-color: #f7d1d3;
   font-size: 2.2rem;
   margin-bottom: 40px;
-  color: var(--accent-color);
+  color: var(--secondary-color);
+  padding: 15px 20px;
+  border-radius: 10px;
 }
 
 /* --- PRODUCT GRID --- */
@@ -175,14 +245,28 @@ nav a:hover {
   gap: 30px;
 }
 
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
 .product-card {
-  background: var(--white);
+  background: #fff;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s;
   text-align: center;
   padding-bottom: 20px;
+  border: 1px solid #eee;
 }
 
 .product-card:hover {
@@ -190,9 +274,15 @@ nav a:hover {
 }
 
 .product-card img {
-  width: 80%;
+  width: 100%;
   height: 250px;
   object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .product-card img {
+    height: 180px;
+  }
 }
 
 .product-info {
@@ -202,6 +292,13 @@ nav a:hover {
 .product-title {
   font-weight: 600;
   margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .product-title {
+    font-size: 0.9rem;
+  }
 }
 
 .product-price {
@@ -209,13 +306,40 @@ nav a:hover {
   font-weight: 700;
 }
 
+/* --- EMPTY STATE --- */
+.no-products-message {
+    grid-column: 1 / -1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto; 
+    width: 90%;
+    max-width: 600px;
+    padding: 60px 20px;
+    background: #fdfdfd;
+    border: 2px dashed #e0e0e0;
+    border-radius: 15px;
+    color: #666;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.no-products-message::before {
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
 /* --- FORMS --- */
 .form-container {
   max-width: 600px;
   margin: 0 auto;
-  background: var(--white);
+  background: #fff;
   padding: 40px;
   border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
 .form-group {
@@ -247,252 +371,11 @@ nav a:hover {
   border-left: 5px solid #ffeeba;
 }
 
-/* --- FOOTER --- */
-footer {
-  background: var(--primary-color);
-  padding: 40px 5%;
-  text-align: center;
-  margin-top: auto;
-}
-
-.footer-links {
-  margin: 20px 0;
-}
-
-.footer-links a {
-  margin: 0 10px;
-  font-size: 0.9rem;
-}
-
-/* --- STICKY WHATSAPP --- */
-/* --- WHATSAPP HOVER ANIMATION --- */
-
-.whatsapp-float {
-  /* Basic style (Keep your position/color settings) */
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 40px;
-  right: 40px;
-  background-color: #25d366;
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Smooth transition for the effect */
-  transition: all 0.3s ease-in-out;
-}
-
-/* This part triggers ONLY when mouse is ON the button */
-.whatsapp-float:hover {
-  transform: scale(1.1) translateY(-5px);
-  /* Grows bigger and moves up slightly */
-  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
-  /* Adds a green glow shadow */
-}
-
-.whatsapp-float:hover {
-  background-color: #20ba5a;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  nav ul {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background: var(--white);
-    padding: 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  nav.active ul {
-    display: flex;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-  }
-}
-
-/* --- FOOTER SOCIAL ICONS --- */
-.footer-socials {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  /* Space between icons */
-  margin-top: 20px;
-  align-items: center;
-}
-
-.footer-socials img {
-  width: 30px;
-  /* Icon size */
-  height: 30px;
-  transition: transform 0.3s ease;
-}
-
-.footer-socials img:hover {
-  transform: translateY(-5px);
-  /* Moves up slightly when you touch it */
-}
-
-/* --- POLICY PAGE STYLES --- */
-.policy-item {
-  margin-bottom: 25px;
-  border-bottom: 1px solid #eee;
-  /* Adds a light line between sections */
-  padding-bottom: 15px;
-}
-
-.policy-item:last-child {
-  border-bottom: none;
-  /* No line under the last item */
-}
-
-.policy-item h3 {
-  font-family: var(--font-heading);
-  color: var(--accent-color);
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-
-.policy-item p {
-  color: #555;
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-
-/* --- MOBILE OPTIMIZATION --- */
-
-@media (max-width: 768px) {
-
-  /* 1. Two-Column Product Grid */
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* Forces 2 columns */
-    gap: 15px;
-    /* Smaller gap between items */
-  }
-
-  /* Adjust image height for the smaller columns */
-  .product-card img {
-    height: 180px;
-    /* Shorter images so they fit better */
-  }
-
-  /* Make text smaller so it doesn't break lines */
-  .product-title {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 768px) {
-
-  /* 2. Compact Hero Section */
-  .hero {
-    padding: 60px 20px;
-    /* Reduced from 100px */
-    background-position: center top;
-    /* Focus on faces/top of image */
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-    /* Smaller headline */
-  }
-}
-
-@media (max-width: 768px) {
-
-  /* 3. Better Mobile Menu */
-  nav ul {
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  nav a {
-    display: block;
-    /* Makes the whole row clickable */
-    padding: 15px 0;
-    /* Adds space for "fat fingers" */
-    font-size: 1.1rem;
-    /* Bigger text */
-    border-bottom: 1px solid #eee;
-    /* distinct lines between links */
-  }
-}
-
-/* Add this to the very top of your CSS or inside the 'body' rule */
-body,
-html {
-  overflow-x: hidden;
-  /* Stops side-to-side scrolling */
-}
-
-/* --- DESKTOP GRID (4 Items per Row) --- */
-@media (min-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(4, 1fr);
-    /* Forces 4 equal columns */
-    gap: 20px;
-  }
-}
-
-/* Internal SEO Navigation Links */
-
-.seo-links {
-  text-align: center;
-  margin: 30px 0;
-  font-family: "Poppins", sans-serif;
-}
-
-.seo-links a {
-  text-decoration: none;
-  color: #b76e79;
-  /* soft luxury pink */
-  font-weight: 500;
-  margin: 0 12px;
-  transition: 0.3s;
-}
-
-.seo-links a:hover {
-  color: #000;
-}
-/* SEO Description Text */
-.seo-text {
-  max-width: 900px;
-  margin: 50px auto 20px;
-  padding: 20px 30px;
-  font-family: "Poppins", sans-serif;
-  font-size: 15px;
-  line-height: 1.8;
-  color: #444;
-  background: #fff8fb;
-  border-left: 4px solid #e91e63;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-/* --- COLOR SWATCH STYLES --- */
-
+/* --- COLOR SWATCHES --- */
 .color-options-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* Space between colors */
+    gap: 15px;
     padding: 10px 0;
 }
 
@@ -506,38 +389,34 @@ html {
     transition: background 0.2s;
 }
 
-/* Hide the actual checkbox input */
 .color-option input[type="checkbox"] {
     display: none;
 }
 
-/* The Color Circle (Swatch) */
 .swatch {
     width: 20px;
     height: 20px;
-    border-radius: 50%; /* Makes it round */
+    border-radius: 50%;
     margin-right: 8px;
     display: inline-block;
-    border: 2px solid transparent; /* Invisible border normally */
+    border: 2px solid transparent;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* WHEN SELECTED: The magic happens here */
 .color-option input:checked + .swatch {
-    transform: scale(1.2); /* Grows bigger */
-    border: 2px solid #333; /* Adds a dark ring around the color */
+    transform: scale(1.2);
+    border: 2px solid #333;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-/* Optional: Make the text bold when selected */
 .color-option input:checked ~ .c-text {
     font-weight: bold;
     color: var(--accent-color);
 }
-/* --- CONTACT PAGE STYLES --- */
 
+/* --- CONTACT PAGE --- */
 .contact-wrapper {
-    max-width: 600px; /* Limits width for a neat look */
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -578,18 +457,6 @@ html {
     flex-direction: column;
 }
 
-.contact-item .details strong {
-    font-size: 0.9rem;
-    color: #333;
-}
-
-.contact-item .details span {
-    font-size: 1rem;
-    color: var(--accent-color);
-    font-weight: 500;
-}
-
-/* Social Buttons Grid */
 .social-links-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -607,19 +474,15 @@ html {
     transition: opacity 0.2s;
 }
 
-.social-btn:hover {
-    opacity: 0.9;
-}
-
+.social-btn:hover { opacity: 0.9; }
 .insta { background: #E1306C; }
 .fb { background: #1877F2; }
 .tiktok { background: #000000; }
 
-/* Closing Trust Box */
 .trust-box {
     margin-top: 30px;
     padding: 15px;
-    background: #fff0f5; /* Light pink background */
+    background: #fff0f5;
     border-radius: 8px;
     text-align: center;
     color: var(--accent-color);
@@ -627,9 +490,301 @@ html {
     border: 1px dashed var(--accent-color);
 }
 
-/* Mobile Adjustment for Social Buttons */
-@media (max-width: 480px) {
-    .social-links-grid {
-        grid-template-columns: 1fr; /* Stack buttons on small phones */
+/* --- FOOTER --- */
+footer {
+  background: #F7D1D3;
+  padding: 40px 5%;
+  text-align: center;
+  margin-top: auto;
+  color: var(--text-dark);
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.footer-socials img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.footer-socials img:hover {
+  transform: translateY(-5px);
+}
+
+/* --- WHATSAPP FLOAT --- */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+  background-color: #20ba5a;
+}
+
+/* --- MOBILE MENU --- */
+.mobile-menu-btn {
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: white; /* Made white to match header */
     }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        z-index: 1000;
+        padding: 10px 0;
+        clip-path: circle(0px at 90% 0);
+        transition: clip-path 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    nav.active ul {
+        clip-path: circle(250% at 90% 0);
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    nav a {
+        display: block;
+        padding: 15px;
+        font-size: 1.1rem;
+        color: var(--text-dark); /* Dark text on white menu */
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    nav.active a {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.1s;
+    }
+}
+
+/* --- SHOPPING CART SIDEBAR --- */
+.cart-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen by default */
+    width: 320px;
+    max-width: 90%;
+    height: 100%;
+    background: white;
+    transition: right 0.3s ease-in-out;
+    z-index: 2001;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+}
+
+.cart-sidebar.open {
+    right: 0; /* Slides in when active */
+}
+
+.cart-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    font-size: 1.2rem;
+    background: #f9f9f9;
+}
+
+.cart-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.cart-close-btn:hover {
+    color: #ff4757;
+}
+
+/* Cart Items Area */
+.cart-items-container {
+    flex: 1;
+    overflow-y: auto; 
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.cart-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.cart-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cart-item h4 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.cart-item p {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* Controls (+ / - / Remove) */
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.qty-btn:hover {
+    background: #ddd;
+}
+
+.remove-btn {
+    color: #ff4757;
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    cursor: pointer;
+    margin-left: auto;
+    text-decoration: underline;
+}
+
+/* Cart Footer */
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #fff;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.02);
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.cart-total span:last-child {
+    color: var(--accent-color);
+    font-size: 1.3rem;
+}
+/* SEO Description Text */
+.seo-text {
+  max-width: 900px;
+  margin: 50px auto 20px;
+  padding: 20px 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #444;
+  background: #fff8fb;
+  border-left: 4px solid #e91e63;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+  /* Internal SEO Navigation Links */
+
+.seo-links {
+  text-align: center;
+  margin: 30px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.seo-links a {
+  text-decoration: none;
+  color: #b76e79;
+  /* soft luxury pink */
+  font-weight: 500;
+  margin: 0 12px;
+  transition: 0.3s;
+}
+
+.seo-links a:hover {
+  color: #000;
 }
