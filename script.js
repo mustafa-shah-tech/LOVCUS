@@ -41,7 +41,7 @@ const products = [
     name: "Green & Champagne Crystals",
     price: 549.0,
     category: "bracelet",
-    image: "lovcus-handmade-bead-bracelet#009.jpeg",
+    image: "lovcus - handmade-bead-bracelet ##009.png",
     desc: "Elevate your style with this sparkling, handmade crystal bracelet. Intricately woven using high-quality emerald green and champagne gold bicone beads, this piece catches the light beautifully.",
   },
 ];
@@ -484,4 +484,5 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
