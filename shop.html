@@ -4,20 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- PRIMARY SEO -->
     <title>Shop Handmade Bracelets | LOVCUS Store</title>
-    <meta
-      name="description"
-      content="Explore LOVCUS handmade bracelets for couples and gifts. Quality jewelry made with love."
-    />
-
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="description" content="Explore the LOVCUS collection of handmade bracelets, couple sets, and customized jewelry. Best prices in Pakistan. Order online today." />
+    <meta name="keywords" content="buy bracelets online, handmade jewelry shop, couple bracelets Pakistan, friendship bands price, LOVCUS store collection" />
     <link rel="canonical" href="https://lovcus.store/shop.html">
+
+    <!-- ICONS & STYLES -->
     <link rel="icon" href="images/logo.png" type="image/png" />
-    <link rel="apple-touch-icon" href="images/logo.png">
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
   </head>
 
   <body>
@@ -25,32 +21,36 @@
 
     <section class="section">
       <h1 class="section-title">Our Collection</h1>
-      <p style="max-width: 800px; margin: 0 auto 25px; text-align: center">
-        Discover our collection of handmade bracelets and custom jewelry by
-        LOVCUS. Each piece is carefully crafted with love and designed to
-        express emotions, making it the perfect gift for couples, friends, and
-        loved ones.
+      <p style="max-width: 800px; margin: 0 auto 25px; text-align: center; color: #555;">
+        Discover our exclusive collection of handmade bracelets and custom jewelry. Each piece is carefully crafted with love to express your emotions. Perfect for couples, friends, and self-love.
       </p>
 
-      <div style="text-align: center; margin-bottom: 30px">
-        <button class="btn btn-outline">All</button>
-        <button class="btn btn-outline">Couples</button>
-        <button class="btn btn-outline">Gifts</button>
+      <!-- Filter Buttons -->
+      <div style="text-align: center; margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+        <button class="btn btn-outline" onclick="loadShop()">All</button>
+        <button class="btn btn-outline" onclick="filterProducts('ring')">Ring</button>
+        <button class="btn btn-outline" onclick="filterProducts('earring')">Earring</button>
+        <button class="btn btn-outline" onclick="filterProducts('necklace')">Necklace</button>
+        <button class="btn btn-outline" onclick="filterProducts('bracelet')">Bracelet</button>
+        <button class="btn btn-outline" onclick="filterProducts('full set')">Full Set</button>
+        <button class="btn btn-outline" onclick="filterProducts('custom-bracelet')">Custom Bracelet</button>
       </div>
-      <div id="product-grid" class="product-grid"></div>
+
+      <div id="product-grid" class="product-grid">
+        <!-- Products load here -->
+      </div>
     </section>
+
+    <!-- SEO Links -->
     <p class="seo-text">
-      LOVCUS is a handmade jewelry brand in Pakistan, specializing in customized
-      bracelets for couples and gifts. Each bracelet is crafted with care,
-      quality materials, and emotional value. Our mission is to deliver
-      meaningful jewelry that lasts.
+      Browse our wide range of handmade accessories. From beaded bracelets to personalized name bands, LOVCUS brings you affordable luxury. We deliver to Lahore, Karachi, Islamabad, and all across Pakistan.
     </p>
     <p class="seo-links">
       <a href="index.html">Home</a> |
-      <a href="shop.html">Shop Bracelets</a>
+      <a href="custom.html">Custom Orders</a>
     </p>
+
     <div id="footer-placeholder"></div>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
-
