@@ -4,14 +4,14 @@
 
 // --- MOCK DATABASE ---
 const products = [
-  {
-    id: 1,
-    name: "Soulmate Bracelet",
-    price: 399,
-    category: "bracelet",
-    image: "images/bracelet.jpeg",
-    desc: "Handmade bracelet crafted with love ❤️, customized just for you. Perfect gift for yourself or someone special.",
-  },
+  { 
+     id: 1,
+    name: "Sweetheart Crystal",
+    price: 399.0,
+    category: "custom-bracelet",
+    image: "images/sweetheart-crystal.jpeg",
+    desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
+     },
   {
     id: 2,
     name: "The Flutter Bracelet",
@@ -22,12 +22,12 @@ const products = [
   },
   {
     id: 3,
-    name: "Sweetheart Crystal",
-    price: 399.0,
-    category: "custom-bracelet",
-    image: "images/sweetheart-crystal.jpeg",
-    desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
-  },
+    name: "Soulmate Bracelet",
+    price: 399,
+    category: "bracelet",
+    image: "images/bracelet.jpeg",
+    desc: "Handmade bracelet crafted with love ❤️, customized just for you. Perfect gift for yourself or someone special.",
+ },
   {
     id: 4,
     name: "The Flutter Bracelet",
@@ -492,6 +492,7 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
 
 
