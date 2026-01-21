@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <nav id="navbar">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="policy.html">Policy</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
@@ -501,3 +501,4 @@ function filterProducts(category) {
     })
     .join("");
 }
+
