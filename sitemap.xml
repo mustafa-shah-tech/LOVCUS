@@ -10,7 +10,19 @@
   </url>
 
   <url>
-    <loc>https://lovcus.store/custom.html</loc>
+    <loc>https://lovcus.store/index.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://lovcus.store/about.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://lovcus.store/contact.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://lovcus.store/policy.html</loc>
   </url>
 
 </urlset>
