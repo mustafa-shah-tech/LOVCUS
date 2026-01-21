@@ -439,31 +439,6 @@ function orderViaWhatsApp(itemName, price) {
   window.open(url, "_blank");
 }
 
-/* --- SUBMIT CUSTOM ORDER FUNCTION --- */
-function submitCustomOrder(event) {
-  event.preventDefault();
-  const phone = "923270880908"; 
-
-  const name = document.getElementById("c-name").value;
-  const contact = document.getElementById("c-contact").value;
-  const address = document.getElementById("c-address").value;
-  const type = document.getElementById("c-type").value;
-  const desc = document.getElementById("c-desc").value;
-  const sizeField = document.getElementById("c-size");
-  const size = sizeField ? sizeField.value : "Standard";
-
-  const colorCheckboxes = document.querySelectorAll('input[name="color"]:checked');
-  let selectedColors = [];
-  colorCheckboxes.forEach((checkbox) => {
-    selectedColors.push(checkbox.value);
-  });
-  const colorString = selectedColors.length > 0 ? selectedColors.join(", ") : "None selected";
-
-  const message = `Hi LOVCUS! Custom Order Request.\n\n👤 Name: ${name}\n📞 Contact: ${contact}\n🏠 Address: ${address}\n📦 Type: ${type}\n📏 Size: ${size}\n🎨 Colors: ${colorString}\n📝 Details: ${desc}`;
-
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
-}
 
 /* --- CATEGORY FILTER LOGIC --- */
 function filterProducts(category) {
@@ -501,4 +476,3 @@ function filterProducts(category) {
     })
     .join("");
 }
-
