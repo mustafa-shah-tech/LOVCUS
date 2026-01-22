@@ -48,7 +48,7 @@ const products = [
     id: 6,
     name: "Custom Beaded Crystal with Copper Clasp",
     price: 999.00,
-    category: "bracelet",
+    category: "custom-bracelet",
     image: "images/lovcus-handmade-bracelet-gift007.jpg",
     desc: "A beautifully handcrafted beaded bracelet featuring an intricate weave of vibrant green and sparkling champagne-gold faceted crystal beads.With customize name. Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet #LC007",
   },
@@ -516,6 +516,7 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
 
 
