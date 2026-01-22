@@ -9,7 +9,7 @@ const products = [
     name: "Forest Flower Crystal",
     price: 399.0,
     category: "custom-bracelet",
-    image: "images/lovcus-handmade-bead-bracelet.jpeg",
+    image: "images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg",
     desc: "Add a touch of elegance to your wrist with this handcrafted green and gold floral bracelet. Made with love and attention to detail. Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
      },
   {
@@ -516,6 +516,7 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
 
 
