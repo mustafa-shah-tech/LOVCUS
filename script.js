@@ -30,19 +30,19 @@ const products = [
  },
   {
     id: 4,
-    name: "The Flutter Bracelet",
-    price: 399.0,
-    category: "custom-bracelet",
-    image: "images/tooba.jpeg",
-    desc: "Personalized stretch bracelet features black alphabet beads spelling customized name accented by alternating black and clear crackle-effect glass beads. The design is finished with three dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm. HandmadeBracelets GirlsBracelet HandmadeJewelry CustomBracelet BraceletForGirls BeadedBracelet GirlsAccessories GirlsFashion TrendyBracelets CuteAccessories AestheticJewelry FashionJewelryHandmadeWithLove GiftForHer",
-  },
-  {
-    id: 5,
     name: "Green & Champagne Crystals",
     price: 549.0,
     category: "bracelet",
     image: "images/lovcus-handmade-bead-bracelet0005.jpeg",
     desc: "Elevate your style with this sparkling, handmade crystal bracelet. Intricately woven using high-quality emerald green and champagne gold bicone beads, this piece catches the light beautifully.",
+  },
+  {
+    id: 5,
+    name: "The Flutter Bracelet",
+    price: 399.0,
+    category: "custom-bracelet",
+    image: "images/tooba.jpeg",
+    desc: "Personalized stretch bracelet features black alphabet beads spelling customized name accented by alternating black and clear crackle-effect glass beads. The design is finished with three dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm. HandmadeBracelets GirlsBracelet HandmadeJewelry CustomBracelet BraceletForGirls BeadedBracelet GirlsAccessories GirlsFashion TrendyBracelets CuteAccessories AestheticJewelry FashionJewelryHandmadeWithLove GiftForHer",
   },
    {
     id: 6,
@@ -516,6 +516,7 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
 
 
