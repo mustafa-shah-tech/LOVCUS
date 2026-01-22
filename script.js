@@ -6,11 +6,11 @@
 const products = [
   { 
      id: 1,
-    name: "Sweetheart Crystal",
+    name: "Forest Flower Crystal",
     price: 399.0,
     category: "custom-bracelet",
-    image: "images/sweetheart-crystal.jpeg",
-    desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
+    image: "images/lovcus-handmade-bead-bracelet.jpeg",
+    desc: "Add a touch of elegance to your wrist with this handcrafted green and gold floral bracelet. Made with love and attention to detail. Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
      },
   {
     id: 2,
@@ -60,6 +60,22 @@ const products = [
     image: "images/lovcus-fashion-beaded-bracelet008.jpg",
     desc: "Sparkling emerald and champagne crystal beaded cuff bracelet with a floral motif. Features an antique copper-toned lobster clasp and extension chain for a versatile fit. Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
   },
+   { 
+     id: 8,
+    name: "Sweetheart Crystal",
+    price: 399.0,
+    category: "custom-bracelet",
+    image: "images/sweetheart-crystal.jpeg",
+    desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
+     },
+   { 
+     id: 9,
+    name: "Emerald Sparkle Crystal & Pearl Woven Bracelet",
+    price: 399.0,
+    category: "bracelet",
+    image: "images/sweetheart-crystal.jpeg",
+    desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
+     },
 ];
 
 // --- CART STATE ---
@@ -500,6 +516,7 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
 
 
