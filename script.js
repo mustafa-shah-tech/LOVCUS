@@ -76,6 +76,14 @@ const products = [
     image: "images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg",
     desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
      },
+   { 
+     id: 9,
+    name: "Emerald Sparkle Crystal & Pearl Woven Bracelet",
+    price: 399.0,
+    category: "bracelet",
+    image: "images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg",
+    desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
+     },
 ];
 
 // --- CART STATE ---
@@ -516,6 +524,7 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
 
 
