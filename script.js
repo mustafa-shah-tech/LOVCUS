@@ -85,9 +85,9 @@ const products = [
     desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
      },
   { 
-     id: 10,
+     id: 1q,
     name: "Midnight Blue Crystal Set",
-    price: 499.0,
+    price: 2499.0,
     category: "full set",
     image: "images/midnight-blue-crystal-set-bead-handmade-jewelry.jpeg",
     desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
@@ -532,6 +532,7 @@ function filterProducts(category) {
     })
     .join("");
 }
+
 
 
 
