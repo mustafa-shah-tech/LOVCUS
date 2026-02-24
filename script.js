@@ -97,8 +97,12 @@ const products = [
 // --- CART STATE ---
 let cart = JSON.parse(localStorage.getItem('lovcus_cart')) || [];
 
-// --- REVIEWS STATE ---
-let reviews = JSON.parse(localStorage.getItem('lovcus_reviews')) || [];
+// --- REVIEWS STATE (Supabase Configuration) ---
+const SUPABASE_URL = "https://atsjuwrabikhhvwepxhl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_X1KAmftyXiKedePOaD_O3Q_txT105WF";
+const _supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+let reviews = []; // Now fetched from Supabase
 
 // --- DYNAMIC HEADER & FOOTER INJECTION ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -539,19 +543,31 @@ function orderViaWhatsApp(itemName, price) {
 }
 
 
-// --- REVIEWS LOGIC ---
-function renderReviews(productId) {
+// --- REVIEWS LOGIC (Global via Supabase) ---
+async function renderReviews(productId) {
     const reviewsList = document.getElementById('reviews-list');
-    if (!reviewsList) return;
+    if (!reviewsList || !_supabase) return;
 
-    const productReviews = reviews.filter(r => r.productId == productId);
+    // Fetch from Supabase
+    const { data, error } = await _supabase
+        .from('reviews')
+        .select('*')
+        .eq('productId', productId)
+        .order('created_at', { ascending: false });
 
-    if (productReviews.length === 0) {
+    if (error) {
+        console.error("Error fetching reviews:", error);
+        return;
+    }
+
+    reviews = data || [];
+
+    if (reviews.length === 0) {
         reviewsList.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color:#999; padding: 20px;">No reviews yet. Be the first to share your thoughts!</p>';
         return;
     }
 
-    reviewsList.innerHTML = productReviews.map(review => `
+    reviewsList.innerHTML = reviews.map(review => `
         <div class="review-card">
             <div class="review-header">
                 <span class="review-name">${review.name}</span>
@@ -562,8 +578,9 @@ function renderReviews(productId) {
     `).join('');
 }
 
-function handleReviewSubmit(event) {
+async function handleReviewSubmit(event) {
     event.preventDefault();
+    if (!_supabase) return;
 
     const urlParams = new URLSearchParams(window.location.search);
     const productId = parseInt(urlParams.get("id"));
@@ -580,17 +597,23 @@ function handleReviewSubmit(event) {
 
     const rating = parseInt(ratingInput.value);
 
-    const newReview = { productId, name, rating, text };
-    reviews.push(newReview);
-    localStorage.setItem('lovcus_reviews', JSON.stringify(reviews));
+    // Save to Supabase
+    const { error } = await _supabase
+        .from('reviews')
+        .insert([{ productId, name, rating, text }]);
+
+    if (error) {
+        console.error("Error saving review:", error);
+        alert("Failed to post review. Please try again.");
+        return;
+    }
 
     // Reset form
     event.target.reset();
 
-    // Rerender reviews
+    // Rerender reviews from database
     renderReviews(productId);
 
-    // Optional: Scroll to the new review or show a thank you message
     alert("Thank you for your feedback!");
 }
 
