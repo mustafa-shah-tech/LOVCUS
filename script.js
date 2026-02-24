@@ -440,6 +440,37 @@ function loadProductDetail() {
     const product = products.find((p) => p.id == productId);
 
     if (product) {
+        // Fix 1: Dynamic Meta Title
+        document.title = `${product.name} | PKR ${product.price} | LOVCUS`;
+
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.name = 'description';
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.content = `Buy ${product.name} for PKR ${product.price}. Handmade with love by LOVCUS Pakistan.`;
+
+        // Fix 2: Refined Product Schema Markup
+        const schema = {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": product.name,
+            "image": [`https://lovcus.store/${product.image}`],
+            "description": product.desc.substring(0, 300),
+            "brand": { "@type": "Brand", "name": "LOVCUS" },
+            "offers": {
+                "@type": "Offer",
+                "priceCurrency": "PKR",
+                "price": product.price,
+                "availability": "https://schema.org/InStock"
+            }
+        };
+        const schemaScript = document.createElement('script');
+        schemaScript.type = 'application/ld+json';
+        schemaScript.text = JSON.stringify(schema);
+        document.head.appendChild(schemaScript);
+
         let displayImage;
         if (product.images && product.images.length > 0) {
             displayImage = product.images[0];
@@ -451,34 +482,11 @@ function loadProductDetail() {
         const safeName = product.name.replace(/'/g, "\\'");
         const safeImage = displayImage.replace(/'/g, "\\'");
 
-        // Inject Product Schema
-        const schemaData = {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "name": product.name,
-            "image": `https://lovcus.store/${displayImage}`,
-            "description": product.desc,
-            "brand": {
-                "@type": "Brand",
-                "name": "LOVCUS"
-            },
-            "offers": {
-                "@type": "Offer",
-                "url": window.location.href,
-                "priceCurrency": "PKR",
-                "price": product.price,
-                "availability": "https://schema.org/InStock"
-            }
-        };
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.text = JSON.stringify(schemaData);
-        document.head.appendChild(script);
-
         detailContainer.innerHTML = `
             <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
                 <div style="flex: 1; min-width: 300px;">
-                    <img src="${displayImage}" style="border-radius: 10px; width: 100%;">
+                    <!-- Fix 3: Descriptive Image Alt Text -->
+                    <img src="${displayImage}" style="border-radius: 10px; width: 100%;" alt="${product.name} - Handmade Bracelet Pakistan">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
                     <h1 style="font-family: var(--font-heading); margin-bottom: 10px;">${product.name}</h1>
