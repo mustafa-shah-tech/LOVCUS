@@ -4,94 +4,94 @@
 
 // --- MOCK DATABASE ---
 const products = [
-  { 
-     id: 1,
-    name: "Forest Flower Crystal",
-    price: 399.0,
-    category: "bracelet",
-    image: "images/lovcus-bead-bracelet-online-pakistan009.jpeg",
-    desc: "Add a touch of elegance to your wrist with this handcrafted green and gold floral bracelet. Made with love and attention to detail. Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
-     },
-  {
-    id: 2,
-    name: "The Flutter Bracelet",
-    price: 399.0,
-    category: "custom-bracelet",
-    image: "images/tanzeela.jpeg",
-    desc: "This is personalized stretch bracelet features black alphabet beads name customized, accented by alternating black and clear crackle-effect glass beads. The design is finished with three dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm.",
-  },
-  {
-    id: 3,
-    name: "Soulmate Bracelet",
-    price: 399,
-    category: "bracelet",
-    image: "images/bracelet.jpeg",
-    desc: "Handmade bracelet crafted with love ❤️, customized just for you. Perfect gift for yourself or someone special.",
- },
-  {
-    id: 4,
-    name: "Green & Champagne Crystals",
-    price: 549.0,
-    category: "bracelet",
-    image: "images/lovcus-handmade-bead-bracelet0005.jpeg",
-    desc: "Elevate your style with this sparkling, handmade crystal bracelet. Intricately woven using high-quality emerald green and champagne gold bicone beads, this piece catches the light beautifully.",
-  },
-  {
-    id: 5,
-    name: "The Flutter Bracelet",
-    price: 399.0,
-    category: "custom-bracelet",
-    image: "images/tooba.jpeg",
-    desc: "Personalized stretch bracelet features black alphabet beads spelling customized name accented by alternating black and clear crackle-effect glass beads. The design is finished with three dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm. HandmadeBracelets GirlsBracelet HandmadeJewelry CustomBracelet BraceletForGirls BeadedBracelet GirlsAccessories GirlsFashion TrendyBracelets CuteAccessories AestheticJewelry FashionJewelryHandmadeWithLove GiftForHer",
-  },
-   {
-    id: 6,
-    name: "Custom Beaded Crystal with Copper Clasp",
-    price: 999.00,
-    category: "custom-bracelet",
-    image: "images/lovcus-handmade-bracelet-gift007.jpg",
-    desc: "A beautifully handcrafted beaded bracelet featuring an intricate weave of vibrant green and sparkling champagne-gold faceted crystal beads.With customize name. Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet #LC007",
-  },
     {
-    id: 7,
-    name: "Crystal Floral Cuff Bracelet",
-    price: 899.00,
-    category: "bracelet",
-    image: "images/lovcus-fashion-beaded-bracelet008.jpg",
-    desc: "Sparkling emerald and champagne crystal beaded cuff bracelet with a floral motif. Features an antique copper-toned lobster clasp and extension chain for a versatile fit. Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
-  },
-   { 
-     id: 8,
-    name: "Sweetheart Crystal",
-    price: 399.0,
-    category: "custom-bracelet",
-    image: "images/sweetheart-crystal.jpeg",
-    desc: "Handmade Personalized Charm Bracelet Stack – Pink & Black. This stunning layered set features cracked glass crystal beads, black alphabet beads for custom names, and elegant gold-tone charms including a heart, butterfly, clover, and pearl. The perfect blend of sweet and bold. Customizable with any names or words.",
-     },
-   { 
-     id: 9,
-    name: "Emerald Sparkle Crystal & Pearl Woven Bracelet",
-    price: 399.0,
-    category: "bracelet",
-    image: "images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg",
-    desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
-     },
-   { 
-     id: 10,
-    name: "Blue Ombre Beaded",
-    price: 499.0,
-    category: "bracelet",
-    image: "images/blue-ombre-beaded-bracelet.jpeg",
-    desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
-     },
-  { 
-     id: 11,
-    name: "Midnight Blue Crystal Set",
-    price: 2499.0,
-    category: "full set",
-    image: "images/midnight-blue-crystal-set-bead-handmade-jewelry.jpeg",
-    desc: "Beautifully finished with a secure silver lobster clasp. It’s the perfect accessory for a fresh look, or a thoughtful gift for someone special (ideal for birthdays or Eid!). Lovcus Jewelry | Handmade Bracelets Pakistan | Crystal Beaded Jewelry | Artificial Jewellery Pakistan | Online Shopping Pakistan | Gift for Her | Girls Accessories | Party Wear Bracelet | Handcrafted in Pakistan | Trendy Jewelry | Beaded Flower Bracelet",
-     },
+        id: 1,
+        name: "Forest Flower Crystal",
+        price: 399.0,
+        category: "bracelet",
+        image: "images/lovcus-bead-bracelet-online-pakistan009.jpeg",
+        desc: "Add a touch of elegance to your wrist with this handcrafted green and gold floral bracelet. This beautiful piece features delicate craftsmanship, making it a perfect accessory for nature lovers. Our crystal beaded jewelry is designed to stand out, whether for daily wear or special occasions in Pakistan.",
+    },
+    {
+        id: 2,
+        name: "The Flutter Bracelet",
+        price: 399.0,
+        category: "custom-bracelet",
+        image: "images/tanzeela.jpeg",
+        desc: "This personalized stretch bracelet features black alphabet beads that can be customized with your choice of name. Accented by alternating black and clear crackle-effect glass beads, the design is elegantly finished with dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm.",
+    },
+    {
+        id: 3,
+        name: "Soulmate Bracelet",
+        price: 399,
+        category: "bracelet",
+        image: "images/bracelet.jpeg",
+        desc: "Our Soulmate Bracelet is a beautiful handmade piece crafted with love ❤️ and attention to detail. This customized bracelet is designed to be a meaningful gift for yourself or someone special, making it a perfect token of affection and friendship in Pakistan.",
+    },
+    {
+        id: 4,
+        name: "Green & Champagne Crystals",
+        price: 549.0,
+        category: "bracelet",
+        image: "images/lovcus-handmade-bead-bracelet0005.jpeg",
+        desc: "Elevate your style with this sparkling, handcrafted crystal bracelet. Intricately woven using high-quality emerald green and champagne gold bicone beads, this piece catches the light beautifully, making it an ideal accessory for both festive events and daily elegance.",
+    },
+    {
+        id: 5,
+        name: "The Flutter Bracelet",
+        price: 399.0,
+        category: "custom-bracelet",
+        image: "images/tooba.jpeg",
+        desc: "This personalized stretch bracelet features black alphabet beads that spell out your customized name, accented by alternating black and clear crackle-effect glass beads. The design is elegantly finished with three dangling silver-tone chains holding a sparkling glitter butterfly and a chic black enamel flower charm. A trendy and aesthetic accessory for any jewelry collection.",
+    },
+    {
+        id: 6,
+        name: "Custom Beaded Crystal with Copper Clasp",
+        price: 999.0,
+        category: "custom-bracelet",
+        image: "images/lovcus-handmade-bracelet-gift007.jpg",
+        desc: "A beautifully handcrafted beaded bracelet featuring an intricate weave of vibrant green and sparkling champagne-gold faceted crystal beads. You can personalize this piece with a custom name, making it a unique self-treat or a thoughtful gift for someone special.",
+    },
+    {
+        id: 7,
+        name: "Crystal Floral Cuff Bracelet",
+        price: 899.0,
+        category: "bracelet",
+        image: "images/lovcus-fashion-beaded-bracelet008.jpg",
+        desc: "This sparkling emerald and champagne crystal beaded cuff bracelet features a stunning floral motif. It comes with an antique copper-toned lobster clasp and extension chain, ensuring a versatile and comfortable fit for any wrist size.",
+    },
+    {
+        id: 8,
+        name: "Sweetheart Crystal",
+        price: 399.0,
+        category: "custom-bracelet",
+        image: "images/sweetheart-crystal.jpeg",
+        desc: "Our Sweetheart Crystal is a stunning handmade personalized charm bracelet stack in a bold pink and black theme. This layered set features cracked glass crystal beads, custom alphabet beads for personalized names, and elegant gold-tone charms including a heart, butterfly, and pearl. It's the perfect blend of sweet and bold for a custom jewelry gift.",
+    },
+    {
+        id: 9,
+        name: "Emerald Sparkle Crystal & Pearl Woven Bracelet",
+        price: 399.0,
+        category: "bracelet",
+        image: "images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg",
+        desc: "Beautifully finished with a secure silver lobster clasp, this emerald sparkle crystal and pearl woven bracelet is the perfect accessory for a fresh look. It makes a thoughtful gift for birthdays, Eid, or any special celebration.",
+    },
+    {
+        id: 10,
+        name: "Blue Ombre Beaded",
+        price: 499.0,
+        category: "bracelet",
+        image: "images/blue-ombre-beaded-bracelet.jpeg",
+        desc: "This blue ombre beaded bracelet is handcrafted with premium materials to ensure durability and style. It's a versatile piece that complements both casual and formal outfits, making it a must-have for your jewelry collection.",
+    },
+    {
+        id: 11,
+        name: "Midnight Blue Crystal Set",
+        price: 2499.0,
+        category: "full set",
+        image: "images/midnight-blue-crystal-set-bead-handmade-jewelry.jpeg",
+        desc: "Complete your look with our luxurious midnight blue crystal set. This full set includes matching pieces that radiate elegance and sophistication. Ideal for weddings and formal events in Pakistan.",
+    },
 ];
 
 // --- CART STATE ---
@@ -99,10 +99,10 @@ let cart = JSON.parse(localStorage.getItem('lovcus_cart')) || [];
 
 // --- DYNAMIC HEADER & FOOTER INJECTION ---
 document.addEventListener("DOMContentLoaded", () => {
-  // Inject Header (With Search & Cart Icons)
-  const headerPlace = document.getElementById("header-placeholder");
-  if (headerPlace) {
-    headerPlace.innerHTML = `
+    // Inject Header (With Search & Cart Icons)
+    const headerPlace = document.getElementById("header-placeholder");
+    if (headerPlace) {
+        headerPlace.innerHTML = `
         <header> 
             <a href="index.html" class="logo" style="text-decoration: none;">
                 <img src="images/logo.png" alt="Logo" class="logo-img">LOVCUS
@@ -140,27 +140,27 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         </header>
     `;
-  }
+    }
 
-  // Inject Footer
-  const footerPlace = document.getElementById("footer-placeholder");
-  if (footerPlace) {
-    footerPlace.innerHTML = `
+    // Inject Footer
+    const footerPlace = document.getElementById("footer-placeholder");
+    if (footerPlace) {
+        footerPlace.innerHTML = `
         <footer>
             <h3>LOVCUS</h3>
             <p>Made with Love ❤️</p>
             
             <div class="footer-socials">
-                <a href="https://www.instagram.com/lovcus5432?igsh=MTUya2x4ajdoNzhhdQ==" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+                <a href="https://www.instagram.com/lovcus5432?igsh=MTUya2x4ajdoNzhhdQ==" target="_blank" aria-label="Follow LOVCUS on Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="LOVCUS Instagram - Handmade Jewelry Showcase">
                 </a>
 
-                <a href="https://www.tiktok.com/@lovcus5?_r=1&_t=ZS-936596nmzV2" target="_blank">
-                    <img src="https://www.vectorlogo.zone/logos/tiktok/tiktok-icon.svg" alt="TikTok">
+                <a href="https://www.tiktok.com/@lovcus5?_r=1&_t=ZS-936596nmzV2" target="_blank" aria-label="Watch LOVCUS on TikTok">
+                    <img src="https://www.vectorlogo.zone/logos/tiktok/tiktok-icon.svg" alt="LOVCUS TikTok - Jewelry Making Process">
                 </a>
 
-                <a href="https://www.facebook.com/share/18Fku7dqFf/" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook">
+                <a href="https://www.facebook.com/share/18Fku7dqFf/" target="_blank" aria-label="Join LOVCUS on Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="LOVCUS Facebook Page - Customer Reviews and Updates">
                 </a>
             </div>
 
@@ -170,29 +170,29 @@ document.addEventListener("DOMContentLoaded", () => {
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 35px; height: 35px; margin-top: 2px;">
         </a>
     `;
-  }
+    }
 
-  // Initialize Cart UI
-  updateCartBadge();
-  injectCartHTML();
+    // Initialize Cart UI
+    updateCartBadge();
+    injectCartHTML();
 
-  // Initialize Page Specific Logic
-  const path = window.location.pathname;
-  if (path.endsWith("index.html") || path === "/" || path.endsWith("/")) {
-    loadHomeProducts(); // Loads only 8 items
-  } else {
-    loadShop(); // Loads ALL items (for shop.html)
-  }
+    // Initialize Page Specific Logic
+    const path = window.location.pathname;
+    if (path.endsWith("index.html") || path === "/" || path.endsWith("/")) {
+        loadHomeProducts(); // Loads only 8 items
+    } else {
+        loadShop(); // Loads ALL items (for shop.html)
+    }
 
-  loadProductDetail();
+    loadProductDetail();
 });
 
 // --- MENU TOGGLE ---
 function toggleMenu() {
-  const navbar = document.getElementById("navbar");
-  if (navbar) {
-    navbar.classList.toggle("active");
-  }
+    const navbar = document.getElementById("navbar");
+    if (navbar) {
+        navbar.classList.toggle("active");
+    }
 }
 
 // --- SEARCH LOGIC ---
@@ -302,7 +302,7 @@ function injectCartHTML() {
 function renderCartItems() {
     const container = document.getElementById('cart-items');
     const totalPriceEl = document.getElementById('cart-total-price');
-    
+
     if (cart.length === 0) {
         container.innerHTML = '<p style="text-align:center; margin-top:50px; color:#999;">Your cart is empty.</p>';
         totalPriceEl.innerText = 'PKR 0';
@@ -335,7 +335,7 @@ function renderCartItems() {
 function checkoutCart() {
     if (cart.length === 0) return alert("Cart is empty!");
 
-    const phone = "923270880908"; 
+    const phone = "923270880908";
     let message = "Hi LOVCUS! I want to order:\n\n";
     let total = 0;
 
@@ -354,39 +354,39 @@ function checkoutCart() {
 
 // --- SHOP PAGE LOGIC (Safe + Search + Filter) ---
 function loadShop() {
-  const grid = document.getElementById("product-grid");
-  if (!grid) return;
+    const grid = document.getElementById("product-grid");
+    if (!grid) return;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchQuery = urlParams.get('search');
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
 
-  let displayProducts = products;
+    let displayProducts = products;
 
-  if (searchQuery) {
-      const lowerQuery = searchQuery.toLowerCase();
-      displayProducts = products.filter(p => 
-          p.name.toLowerCase().includes(lowerQuery) || 
-          p.category.toLowerCase().includes(lowerQuery)
-      );
-      const title = document.querySelector('.section-title');
-      if (title) title.innerHTML = `Results for "${searchQuery}" <br> <a href="shop.html" style="font-size:0.8rem; color:var(--accent-color)">(Clear Search)</a>`;
-  }
+    if (searchQuery) {
+        const lowerQuery = searchQuery.toLowerCase();
+        displayProducts = products.filter(p =>
+            p.name.toLowerCase().includes(lowerQuery) ||
+            p.category.toLowerCase().includes(lowerQuery)
+        );
+        const title = document.querySelector('.section-title');
+        if (title) title.innerHTML = `Results for "${searchQuery}" <br> <a href="shop.html" style="font-size:0.8rem; color:var(--accent-color)">(Clear Search)</a>`;
+    }
 
-  if (displayProducts.length === 0) {
-      grid.innerHTML = `<div class="no-products-message">No products found. <br> Check back later!</div>`;
-      return;
-  }
+    if (displayProducts.length === 0) {
+        grid.innerHTML = `<div class="no-products-message">No products found. <br> Check back later!</div>`;
+        return;
+    }
 
-  grid.innerHTML = displayProducts
-    .map((product) => {
-      let displayImage;
-      if (product.images && product.images.length > 0) {
-        displayImage = product.images[0];
-      } else {
-        displayImage = product.image;
-      }
+    grid.innerHTML = displayProducts
+        .map((product) => {
+            let displayImage;
+            if (product.images && product.images.length > 0) {
+                displayImage = product.images[0];
+            } else {
+                displayImage = product.image;
+            }
 
-      return `
+            return `
         <div class="product-card">
             <img src="${displayImage}" alt="${product.name}" loading="lazy" width="300" height="300" style="object-fit: cover;">
             <div class="product-info">
@@ -396,27 +396,27 @@ function loadShop() {
             </div>
         </div>
         `;
-    })
-    .join("");
+        })
+        .join("");
 }
 
 // --- HOME PAGE LOGIC (LIMIT 8 ITEMS) ---
 function loadHomeProducts() {
-  const grid = document.getElementById("product-grid");
-  if (!grid) return;
+    const grid = document.getElementById("product-grid");
+    if (!grid) return;
 
-  const limitedProducts = products.slice(0, 8);
+    const limitedProducts = products.slice(0, 8);
 
-  grid.innerHTML = limitedProducts
-    .map((product) => {
-      let displayImage;
-      if (product.images && product.images.length > 0) {
-        displayImage = product.images[0];
-      } else {
-        displayImage = product.image;
-      }
+    grid.innerHTML = limitedProducts
+        .map((product) => {
+            let displayImage;
+            if (product.images && product.images.length > 0) {
+                displayImage = product.images[0];
+            } else {
+                displayImage = product.image;
+            }
 
-      return `
+            return `
         <div class="product-card" onclick="window.location.href='product.html?id=${product.id}'" style="cursor: pointer;">
             <img src="${displayImage}" alt="${product.name}" loading="lazy" width="300" height="300" style="object-fit: cover;">
             <div class="product-info">
@@ -426,32 +426,56 @@ function loadHomeProducts() {
             </div>
         </div>
         `;
-    })
-    .join("");
+        })
+        .join("");
 }
 
 // --- PRODUCT DETAIL LOGIC (With Add to Cart) ---
 function loadProductDetail() {
-  const detailContainer = document.getElementById("product-detail-container");
-  if (!detailContainer) return;
+    const detailContainer = document.getElementById("product-detail-container");
+    if (!detailContainer) return;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get("id");
-  const product = products.find((p) => p.id == productId);
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    const product = products.find((p) => p.id == productId);
 
-  if (product) {
-    let displayImage;
-    if (product.images && product.images.length > 0) {
-      displayImage = product.images[0];
-    } else {
-      displayImage = product.image;
-    }
+    if (product) {
+        let displayImage;
+        if (product.images && product.images.length > 0) {
+            displayImage = product.images[0];
+        } else {
+            displayImage = product.image;
+        }
 
-    // Escape quotes for the addToCart function arguments
-    const safeName = product.name.replace(/'/g, "\\'");
-    const safeImage = displayImage.replace(/'/g, "\\'");
+        // Escape quotes for the addToCart function arguments
+        const safeName = product.name.replace(/'/g, "\\'");
+        const safeImage = displayImage.replace(/'/g, "\\'");
 
-    detailContainer.innerHTML = `
+        // Inject Product Schema
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product.name,
+            "image": `https://lovcus.store/${displayImage}`,
+            "description": product.desc,
+            "brand": {
+                "@type": "Brand",
+                "name": "LOVCUS"
+            },
+            "offers": {
+                "@type": "Offer",
+                "url": window.location.href,
+                "priceCurrency": "PKR",
+                "price": product.price,
+                "availability": "https://schema.org/InStock"
+            }
+        };
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
+        detailContainer.innerHTML = `
             <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
                 <div style="flex: 1; min-width: 300px;">
                     <img src="${displayImage}" style="border-radius: 10px; width: 100%;">
@@ -482,44 +506,44 @@ function loadProductDetail() {
                 </div>
             </div>
         `;
-  } else {
-    detailContainer.innerHTML = "<p>Product not found.</p>";
-  }
+    } else {
+        detailContainer.innerHTML = "<p>Product not found.</p>";
+    }
 }
 
 // --- WHATSAPP ORDER LOGIC ---
 function orderViaWhatsApp(itemName, price) {
-  const phone = "923270880908"; 
-  const message = `Hi LOVCUS! I want to order: ${itemName} (PKR ${price}). Please confirm availability.`;
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+    const phone = "923270880908";
+    const message = `Hi LOVCUS! I want to order: ${itemName} (PKR ${price}). Please confirm availability.`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
 }
 
 
 /* --- CATEGORY FILTER LOGIC --- */
 function filterProducts(category) {
-  const grid = document.getElementById("product-grid");
-  if (!grid) return;
+    const grid = document.getElementById("product-grid");
+    if (!grid) return;
 
-  const filteredList = products.filter(
-    (p) => p.category.toLowerCase() === category.toLowerCase(),
-  );
+    const filteredList = products.filter(
+        (p) => p.category.toLowerCase() === category.toLowerCase(),
+    );
 
-  if (filteredList.length === 0) {
-    grid.innerHTML = `<div class="no-products-message">No products found in "<strong>${category}</strong>". <br> Check back later!</div>`;
-    return;
-  }
-  
-  grid.innerHTML = filteredList
-    .map((product) => {
-      let displayImage;
-      if (product.images && product.images.length > 0) {
-        displayImage = product.images[0];
-      } else {
-        displayImage = product.image;
-      }
+    if (filteredList.length === 0) {
+        grid.innerHTML = `<div class="no-products-message">No products found in "<strong>${category}</strong>". <br> Check back later!</div>`;
+        return;
+    }
 
-      return `
+    grid.innerHTML = filteredList
+        .map((product) => {
+            let displayImage;
+            if (product.images && product.images.length > 0) {
+                displayImage = product.images[0];
+            } else {
+                displayImage = product.image;
+            }
+
+            return `
         <div class="product-card">
             <img src="${displayImage}" alt="${product.name}" loading="lazy" width="300" height="300" style="object-fit: cover;">
             <div class="product-info">
@@ -529,8 +553,8 @@ function filterProducts(category) {
             </div>
         </div>
         `;
-    })
-    .join("");
+        })
+        .join("");
 }
 
 

@@ -8,10 +8,6 @@
   <url>
     <loc>https://lovcus.store/shop.html</loc>
   </url>
-
-  <url>
-    <loc>https://lovcus.store/index.html</loc>
-  </url>
   
   <url>
     <loc>https://lovcus.store/about.html</loc>
@@ -24,5 +20,18 @@
   <url>
     <loc>https://lovcus.store/policy.html</loc>
   </url>
+
+  <!-- Product Pages -->
+  <url><loc>https://lovcus.store/product.html?id=1</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=2</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=3</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=4</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=5</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=6</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=7</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=8</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=9</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=10</loc></url>
+  <url><loc>https://lovcus.store/product.html?id=11</loc></url>
 
 </urlset>
