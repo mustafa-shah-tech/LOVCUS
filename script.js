@@ -97,10 +97,8 @@ const products = [
 // --- CART STATE ---
 let cart = JSON.parse(localStorage.getItem('lovcus_cart')) || [];
 
-// --- REVIEWS STATE (Supabase) ---
-const SUPABASE_URL = "https://atsjuwrabikhhvwepxhl.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0c2p1d3JhYmlraGh2d2VweGhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5Mzk0MzksImV4cCI6MjA4NzUxNTQzOX0.Qqm-9MZdDnNTgSS-8suoYodCW-o3RDuKNfxd9i7NnlM";
-const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+// --- REVIEWS STATE ---
+let reviews = JSON.parse(localStorage.getItem('lovcus_reviews')) || [];
 
 // --- DYNAMIC HEADER & FOOTER INJECTION ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -542,53 +540,34 @@ function orderViaWhatsApp(itemName, price) {
 
 
 // --- REVIEWS LOGIC ---
-async function renderReviews(productId) {
+function renderReviews(productId) {
     const reviewsList = document.getElementById('reviews-list');
     if (!reviewsList) return;
 
-    if (!supabase) {
-        reviewsList.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color:red; padding: 20px;">Review system offline. Please check back later.</p>';
+    const productReviews = reviews.filter(r => r.productId == productId);
+
+    if (productReviews.length === 0) {
+        reviewsList.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color:#999; padding: 20px;">No reviews yet. Be the first to share your thoughts!</p>';
         return;
     }
 
-    try {
-        const { data: reviews, error } = await supabase
-            .from('reviews')
-            .select('*')
-            .eq('productId', productId)
-            .order('created_at', { ascending: false });
-
-        if (error) throw error;
-
-        if (!reviews || reviews.length === 0) {
-            reviewsList.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color:#999; padding: 20px;">No reviews yet. Be the first to share your thoughts!</p>';
-            return;
-        }
-
-        reviewsList.innerHTML = reviews.map(review => `
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="review-name">${review.name}</span>
-                    <span class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</span>
-                </div>
-                <p class="review-text">"${review.text}"</p>
+    reviewsList.innerHTML = productReviews.map(review => `
+        <div class="review-card">
+            <div class="review-header">
+                <span class="review-name">${review.name}</span>
+                <span class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</span>
             </div>
-        `).join('');
-    } catch (err) {
-        console.error("Error fetching reviews:", err);
-        reviewsList.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color:red; padding: 20px;">Failed to load reviews.</p>';
-    }
+            <p class="review-text">"${review.text}"</p>
+        </div>
+    `).join('');
 }
 
-async function handleReviewSubmit(event) {
+function handleReviewSubmit(event) {
     event.preventDefault();
 
     const urlParams = new URLSearchParams(window.location.search);
     const productId = parseInt(urlParams.get("id"));
-    if (!productId || !supabase) return;
-
-    const btn = event.target.querySelector('button');
-    const originalBtnText = btn.innerText;
+    if (!productId) return;
 
     const name = document.getElementById('review-name').value;
     const text = document.getElementById('review-text').value;
@@ -601,30 +580,18 @@ async function handleReviewSubmit(event) {
 
     const rating = parseInt(ratingInput.value);
 
-    try {
-        btn.disabled = true;
-        btn.innerText = "Posting...";
+    const newReview = { productId, name, rating, text };
+    reviews.push(newReview);
+    localStorage.setItem('lovcus_reviews', JSON.stringify(reviews));
 
-        const { error } = await supabase
-            .from('reviews')
-            .insert([{ productId, name, rating, text }]);
+    // Reset form
+    event.target.reset();
 
-        if (error) throw error;
+    // Rerender reviews
+    renderReviews(productId);
 
-        // Reset form
-        event.target.reset();
-
-        // Rerender reviews
-        await renderReviews(productId);
-
-        alert("Thank you for your feedback!");
-    } catch (err) {
-        console.error("Error posting review:", err);
-        alert("Failed to post your review. Please try again.");
-    } finally {
-        btn.disabled = false;
-        btn.innerText = originalBtnText;
-    }
+    // Optional: Scroll to the new review or show a thank you message
+    alert("Thank you for your feedback!");
 }
 
 /* --- CATEGORY FILTER LOGIC --- */
