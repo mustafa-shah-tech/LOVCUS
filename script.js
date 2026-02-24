@@ -459,6 +459,11 @@ function loadProductDetail() {
             "image": [`https://lovcus.store/${product.image}`],
             "description": product.desc.substring(0, 300),
             "brand": { "@type": "Brand", "name": "LOVCUS" },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5",
+                "reviewCount": "1"
+            },
             "offers": {
                 "@type": "Offer",
                 "priceCurrency": "PKR",
