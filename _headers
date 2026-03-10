@@ -1,6 +1,9 @@
 /*
   X-Content-Type-Options: nosniff
-  Content-Security-Policy: default-src 'self' https: data:;
+  Content-Security-Policy: default-src 'self' https: data: 'unsafe-inline' 'unsafe-hashes';
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
+
+/admin.html
+  X-Robots-Tag: noindex, nofollow

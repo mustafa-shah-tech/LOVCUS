@@ -9,7 +9,15 @@ let products = [];
 const staticProducts = [
     { id: 1, name: "Forest Flower Crystal", price: 399.0, category: "bracelet", image: "images/lovcus-bead-bracelet-online-pakistan009.jpeg", description: "Add a touch of elegance to your wrist with this handcrafted green and gold floral bracelet. This beautiful piece features delicate craftsmanship, making it a perfect accessory for nature lovers. Our crystal beaded jewelry is designed to stand out, whether for daily wear or special occasions in Pakistan."},
     { id: 2, name: "The Flutter Bracelet", price: 399.0, category: "custom-bracelet", image: "images/tanzeela.jpeg", description: "This personalized stretch bracelet features black alphabet beads that can be customized with your choice of name. Accented by alternating black and clear crackle-effect glass beads, the design is elegantly finished with dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm."},
-    { id: 3, name: "Soulmate Bracelet", price: 399, category: "bracelet", image: "images/bracelet.jpeg", description: "Our Soulmate Bracelet is a beautiful handmade piece crafted with love ❤️ and attention to detail. This customized bracelet is designed to be a meaningful gift for yourself or someone special, making it a perfect token of affection and friendship in Pakistan."},
+    {
+        id: 3,
+        name: "Soulmate Bracelet",
+        price: 399,
+        category: "bracelet",
+        image: "images/lovcus-soulmate-couple-bracelet-pakistan.jpeg",
+        description:
+            "Our Soulmate Bracelet is a beautiful handmade piece crafted with love ❤️ and attention to detail. This customized bracelet is designed to be a meaningful gift for yourself or someone special, making it a perfect token of affection and friendship in Pakistan.",
+    },
     { id: 4, name: "Green & Champagne Crystals", price: 549.0, category: "bracelet", image: "images/lovcus-handmade-bead-bracelet0005.jpeg", description: "Elevate your style with this sparkling, handcrafted crystal bracelet. Intricately woven using high-quality emerald green and champagne gold bicone beads, this piece catches the light beautifully, making it an ideal accessory for both festive events and daily elegance."},
     { id: 5, name: "The Flutter Bracelet", price: 399.0, category: "custom-bracelet", image: "images/tooba.jpeg", description: "This personalized stretch bracelet features black alphabet beads that spell out your customized name, accented by alternating black and clear crackle-effect glass beads. The design is elegantly finished with three dangling silver-tone chains holding a sparkling glitter butterfly and a chic black enamel flower charm. A trendy and aesthetic accessory for any jewelry collection."},
     { id: 6, name: "Custom Beaded Crystal with Copper Clasp", price: 999.0, category: "custom-bracelet", image: "images/lovcus-handmade-bracelet-gift007.jpg", description: "A beautifully handcrafted beaded bracelet featuring an intricate weave of vibrant green and sparkling champagne-gold faceted crystal beads. You can personalize this piece with a custom name, making it a unique self-treat or a thoughtful gift for someone special."},
@@ -388,6 +396,10 @@ function loadProductDetail() {
     if (product) {
         // Fix 1: Dynamic Meta Title
         document.title = `${product.name} | PKR ${product.price} | LOVCUS`;
+        const canonicalEl = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+        canonicalEl.rel = 'canonical';
+        canonicalEl.href = `https://lovcus.store/product.html?id=${productId}`;
+        document.head.appendChild(canonicalEl);
 
         let metaDesc = document.querySelector('meta[name="description"]');
         if (!metaDesc) {
@@ -402,8 +414,8 @@ function loadProductDetail() {
             "@context": "https://schema.org/",
             "@type": "Product",
             "name": product.name,
-            "image": [`https://lovcus.store/${product.image}`],
-            "description": product.desc.substring(0, 300),
+            "image": [displayImage],
+            "description": product.description.substring(0, 300),
             "brand": { "@type": "Brand", "name": "LOVCUS" },
             "aggregateRating": {
                 "@type": "AggregateRating",
@@ -442,8 +454,10 @@ function loadProductDetail() {
                 <div style="flex: 1; min-width: 300px;">
                     <h1 style="font-family: var(--font-heading); margin-bottom: 10px;">${product.name}</h1>
                     <h2 style="color: var(--accent-color); margin-bottom: 20px;">PKR ${product.price}</h2>
-                    <p style="margin-bottom: 20px;">${product.desc}</p>
-                    
+                    <div class="product-description" style="color: var(--text-color); font-size: 1rem; line-height: 1.6;">
+                    <h3 style="margin-bottom: 10px; color: var(--accent-color);">Description</h3>
+                    <p style="margin-bottom: 20px;">${product.description}</p>
+                </div>    
                     <div class="alert-box">
                         <strong>⚠️ Payment Policy:</strong> Minimum 30% advance payment required.
                     </div>
@@ -495,7 +509,8 @@ async function renderReviews(productId) {
         .order('created_at', { ascending: false });
 
     if (error) {
-        console.error("Error fetching reviews:", error);
+        // Silently fail on error rather than exposing to console in production
+        reviewsList.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">Unable to load reviews at this time.</p>';
         return;
     }
 
@@ -542,7 +557,7 @@ async function handleReviewSubmit(event) {
         .insert([{ productId, name, rating, text }]);
 
     if (error) {
-        console.error("Error saving review:", error);
+        // Silently fail or use toast message
         alert("Failed to post review. Please try again.");
         return;
     }
@@ -592,24 +607,3 @@ function filterProducts(category) {
         })
         .join("");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
