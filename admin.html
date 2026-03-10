@@ -71,7 +71,7 @@
     table{width:100%;border-collapse:collapse;}
     th{padding:12px 16px;text-align:left;font-size:.7rem;color:var(--muted);text-transform:uppercase;background:var(--bg);border-bottom:1px solid var(--border);}
     td{padding:12px 16px;font-size:.88rem;border-bottom:1px solid var(--border);}
-    tr:last-child td{border:bottom:none;}
+    tr:last-child td{border-bottom:none;}
     .badge{padding:3px 8px;border-radius:12px;font-size:.7rem;font-weight:600;text-transform:uppercase;}
     .bg{background:rgba(76,175,129,.15);color:var(--success);} .br{background:rgba(224,92,99,.15);color:var(--danger);} .bgo{background:var(--card);color:var(--accent);}
     .bm{background:var(--bg);color:var(--muted);}
@@ -339,11 +339,13 @@ async function doLogin(){
   const u=document.getElementById('l-user').value.trim(), p=document.getElementById('l-pass').value;
   document.getElementById('lerr').style.display='none';
   document.getElementById('ldberr').style.display='none';
+  document.getElementById('l-setup-banner').style.display='none';
   
   const {data, error} = await db.from('team').select('*').eq('username',u).eq('password',p).single();
   
   if(error && error.code === '42P01') {
     document.getElementById('ldberr').style.display='block';
+    document.getElementById('l-setup-banner').style.display='block';
     return;
   }
   
