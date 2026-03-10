@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /lovcus-admin-panel.html
+Disallow: /google1282e319a87fc218.html
+
+Sitemap: https://lovcus.store/sitemap.xml
