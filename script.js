@@ -7,11 +7,10 @@ let products = [];
 
 // Static fallback products in case Supabase is unavailable
 const staticProducts = [
-    { id: 1, slug: "forest-flower-crystal", name: "Forest Flower Crystal", price: 399.0, category: "bracelet", image: "images/lovcus-bead-bracelet-online-pakistan009.jpeg", description: "Add a touch of elegance to your wrist with this handcrafted green and gold floral bracelet. This beautiful piece features delicate craftsmanship, making it a perfect accessory for nature lovers. Our crystal beaded jewelry is designed to stand out, whether for daily wear or special occasions in Pakistan."},
-    { id: 2, slug: "flutter-bracelet", name: "The Flutter Bracelet", price: 399.0, category: "custom-bracelet", image: "images/tanzeela.jpeg", description: "This personalized stretch bracelet features black alphabet beads that can be customized with your choice of name. Accented by alternating black and clear crackle-effect glass beads, the design is elegantly finished with dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm."},
+    { id: 1, name: "Forest Flower Crystal", price: 399.0, category: "bracelet", image: "images/lovcus-bead-bracelet-online-pakistan009.jpeg", description: "Add a touch of elegance to your wrist with this handcrafted green and gold floral bracelet. This beautiful piece features delicate craftsmanship, making it a perfect accessory for nature lovers. Our crystal beaded jewelry is designed to stand out, whether for daily wear or special occasions in Pakistan."},
+    { id: 2, name: "The Flutter Bracelet", price: 399.0, category: "custom-bracelet", image: "images/tanzeela.jpeg", description: "This personalized stretch bracelet features black alphabet beads that can be customized with your choice of name. Accented by alternating black and clear crackle-effect glass beads, the design is elegantly finished with dangling silver-tone chains holding a sparkling glitter butterfly, speckled beads, and a chic black enamel flower charm."},
     {
         id: 3,
-        slug: "soulmate-bracelet",
         name: "Soulmate Bracelet",
         price: 399,
         category: "bracelet",
@@ -19,14 +18,14 @@ const staticProducts = [
         description:
             "Our Soulmate Bracelet is a beautiful handmade piece crafted with love ❤️ and attention to detail. This customized bracelet is designed to be a meaningful gift for yourself or someone special, making it a perfect token of affection and friendship in Pakistan.",
     },
-    { id: 4, slug: "green-champagne-crystals", name: "Green & Champagne Crystals", price: 549.0, category: "bracelet", image: "images/lovcus-handmade-bead-bracelet0005.jpeg", description: "Elevate your style with this sparkling, handcrafted crystal bracelet. Intricately woven using high-quality emerald green and champagne gold bicone beads, this piece catches the light beautifully, making it an ideal accessory for both festive events and daily elegance."},
-    { id: 5, slug: "flutter-bracelet-custom", name: "The Flutter Bracelet", price: 399.0, category: "custom-bracelet", image: "images/tooba.jpeg", description: "This personalized stretch bracelet features black alphabet beads that spell out your customized name, accented by alternating black and clear crackle-effect glass beads. The design is elegantly finished with three dangling silver-tone chains holding a sparkling glitter butterfly and a chic black enamel flower charm. A trendy and aesthetic accessory for any jewelry collection."},
-    { id: 6, slug: "custom-beaded-crystal", name: "Custom Beaded Crystal with Copper Clasp", price: 999.0, category: "custom-bracelet", image: "images/lovcus-handmade-bracelet-gift007.jpg", description: "A beautifully handcrafted beaded bracelet featuring an intricate weave of vibrant green and sparkling champagne-gold faceted crystal beads. You can personalize this piece with a custom name, making it a unique self-treat or a thoughtful gift for someone special."},
-    { id: 7, slug: "crystal-floral-cuff", name: "Crystal Floral Cuff Bracelet", price: 899.0, category: "bracelet", image: "images/lovcus-fashion-beaded-bracelet008.jpg", description: "This sparkling emerald and champagne crystal beaded cuff bracelet features a stunning floral motif. It comes with an antique copper-toned lobster clasp and extension chain, ensuring a versatile and comfortable fit for any wrist size."},
-    { id: 8, slug: "sweetheart-crystal", name: "Sweetheart Crystal", price: 399.0, category: "custom-bracelet", image: "images/sweetheart-crystal.jpeg", description: "Our Sweetheart Crystal is a stunning handmade personalized charm bracelet stack in a bold pink and black theme. This layered set features cracked glass crystal beads, custom alphabet beads for personalized names, and elegant gold-tone charms including a heart, butterfly, and pearl. It's the perfect blend of sweet and bold for a custom jewelry gift."},
-    { id: 9, slug: "emerald-sparkle-crystal", name: "Emerald Sparkle Crystal & Pearl Woven Bracelet", price: 399.0, category: "bracelet", image: "images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg", description: "Beautifully finished with a secure silver lobster clasp, this emerald sparkle crystal and pearl woven bracelet is the perfect accessory for a fresh look. It makes a thoughtful gift for birthdays, Eid, or any special celebration."},
-    { id: 10, slug: "blue-ombre-beaded", name: "Blue Ombre Beaded", price: 499.0, category: "bracelet", image: "images/blue-ombre-beaded-bracelet.jpeg", description: "This blue ombre beaded bracelet is handcrafted with premium materials to ensure durability and style. It's a versatile piece that complements both casual and formal outfits, making it a must-have for your jewelry collection."},
-    { id: 11, slug: "midnight-blue-crystal-set", name: "Midnight Blue Crystal Set", price: 2499.0, category: "full set", image: "images/midnight-blue-crystal-set-bead-handmade-jewelry.jpeg", description: "Complete your look with our luxurious midnight blue crystal set. This full set includes matching pieces that radiate elegance and sophistication. Ideal for weddings and formal events in Pakistan."},
+    { id: 4, name: "Green & Champagne Crystals", price: 549.0, category: "bracelet", image: "images/lovcus-handmade-bead-bracelet0005.jpeg", description: "Elevate your style with this sparkling, handcrafted crystal bracelet. Intricately woven using high-quality emerald green and champagne gold bicone beads, this piece catches the light beautifully, making it an ideal accessory for both festive events and daily elegance."},
+    { id: 5, name: "The Flutter Bracelet", price: 399.0, category: "custom-bracelet", image: "images/tooba.jpeg", description: "This personalized stretch bracelet features black alphabet beads that spell out your customized name, accented by alternating black and clear crackle-effect glass beads. The design is elegantly finished with three dangling silver-tone chains holding a sparkling glitter butterfly and a chic black enamel flower charm. A trendy and aesthetic accessory for any jewelry collection."},
+    { id: 6, name: "Custom Beaded Crystal with Copper Clasp", price: 999.0, category: "custom-bracelet", image: "images/lovcus-handmade-bracelet-gift007.jpg", description: "A beautifully handcrafted beaded bracelet featuring an intricate weave of vibrant green and sparkling champagne-gold faceted crystal beads. You can personalize this piece with a custom name, making it a unique self-treat or a thoughtful gift for someone special."},
+    { id: 7, name: "Crystal Floral Cuff Bracelet", price: 899.0, category: "bracelet", image: "images/lovcus-fashion-beaded-bracelet008.jpg", description: "This sparkling emerald and champagne crystal beaded cuff bracelet features a stunning floral motif. It comes with an antique copper-toned lobster clasp and extension chain, ensuring a versatile and comfortable fit for any wrist size."},
+    { id: 8, name: "Sweetheart Crystal", price: 399.0, category: "custom-bracelet", image: "images/sweetheart-crystal.jpeg", description: "Our Sweetheart Crystal is a stunning handmade personalized charm bracelet stack in a bold pink and black theme. This layered set features cracked glass crystal beads, custom alphabet beads for personalized names, and elegant gold-tone charms including a heart, butterfly, and pearl. It's the perfect blend of sweet and bold for a custom jewelry gift."},
+    { id: 9, name: "Emerald Sparkle Crystal & Pearl Woven Bracelet", price: 399.0, category: "bracelet", image: "images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg", description: "Beautifully finished with a secure silver lobster clasp, this emerald sparkle crystal and pearl woven bracelet is the perfect accessory for a fresh look. It makes a thoughtful gift for birthdays, Eid, or any special celebration."},
+    { id: 10, name: "Blue Ombre Beaded", price: 499.0, category: "bracelet", image: "images/blue-ombre-beaded-bracelet.jpeg", description: "This blue ombre beaded bracelet is handcrafted with premium materials to ensure durability and style. It's a versatile piece that complements both casual and formal outfits, making it a must-have for your jewelry collection."},
+    { id: 11, name: "Midnight Blue Crystal Set", price: 2499.0, category: "full set", image: "images/midnight-blue-crystal-set-bead-handmade-jewelry.jpeg", description: "Complete your look with our luxurious midnight blue crystal set. This full set includes matching pieces that radiate elegance and sophistication. Ideal for weddings and formal events in Pakistan."},
 ];
 
 // --- CART STATE ---
@@ -358,7 +357,7 @@ function loadShop() {
             <div class="product-info">
                 <h4 class="product-title">${product.name}</h4>
                 <p class="product-price">PKR ${product.price}</p>
-                <a href="/product/${product.slug}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
+                <a href="product.html?id=${product.id}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
             </div>
         </div>
         `;
@@ -383,12 +382,12 @@ function loadHomeProducts() {
             }
 
             return `
-        <div class="product-card" onclick="window.location.href='/product/${product.slug}'" style="cursor: pointer;">
+        <div class="product-card" onclick="window.location.href='product.html?id=${product.id}'" style="cursor: pointer;">
             <img src="${displayImage}" alt="${product.name}" loading="lazy" width="300" height="300" style="object-fit: cover;">
             <div class="product-info">
                 <h4 class="product-title">${product.name}</h4>
                 <p class="product-price">PKR ${product.price}</p>
-                <a href="/product/${product.slug}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
+                <a href="product.html?id=${product.id}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
             </div>
         </div>
         `;
@@ -401,9 +400,8 @@ function loadProductDetail() {
     const detailContainer = document.getElementById("product-detail-container");
     if (!detailContainer) return;
 
-        const urlParams = new URLSearchParams(window.location.search);
-    let productId = urlParams.get("id");
-    if (window.STATIC_PRODUCT_ID) productId = window.STATIC_PRODUCT_ID;
+            const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
     const product = products.find((p) => p.id == productId);
 
     if (product) {
@@ -412,7 +410,7 @@ function loadProductDetail() {
         const canonicalEl = document.getElementById('canonical-tag') || document.createElement('link');
         canonicalEl.id = 'canonical-tag';
         canonicalEl.rel = 'canonical';
-        canonicalEl.href = `https://lovcus.store/product/${product.slug}`;
+        canonicalEl.href = `https://lovcus.store/product.html?id=${productId}`;
         if (!canonicalEl.parentNode) document.head.appendChild(canonicalEl);
 
         let metaDesc = document.querySelector('meta[name="description"]');
@@ -433,7 +431,7 @@ function loadProductDetail() {
             'og-title': `${product.name} | LOVCUS Pakistan`,
             'og-desc': `Buy ${product.name} for PKR ${product.price}. ${product.description.substring(0, 100)}`,
             'og-image': `https://lovcus.store/${displayImage}`,
-            'og-url': `https://lovcus.store/product/${product.slug}`
+            'og-url': `https://lovcus.store/product.html?id=${product.id}`
         };
         Object.entries(ogUpdates).forEach(([id, content]) => {
             const el = document.getElementById(id);
@@ -631,7 +629,7 @@ function filterProducts(category) {
             <div class="product-info">
                 <h4 class="product-title">${product.name}</h4>
                 <p class="product-price">PKR ${product.price}</p>
-                <a href="/product/${product.slug}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
+                <a href="product.html?id=${product.id}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
             </div>
         </div>
         `;
