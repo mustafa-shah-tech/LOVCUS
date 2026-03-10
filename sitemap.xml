@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- MAIN PAGES -->
+  <!-- ═══ MAIN PAGES ═══ -->
+
   <url>
     <loc>https://lovcus.store/</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/background.jpeg</image:loc>
+      <image:title>LOVCUS Handmade Jewelry Pakistan - Custom Bracelets</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -37,17 +44,127 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- PRODUCT PAGES -->
-  <url><loc>https://lovcus.store/product.html?id=1</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=2</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=3</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=4</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=5</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=6</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=7</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=8</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=9</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=10</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lovcus.store/product.html?id=11</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <!-- ═══ PRODUCT PAGES ═══ -->
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=1</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/lovcus-bead-bracelet-online-pakistan009.jpeg</image:loc>
+      <image:title>Forest Flower Crystal - Handmade Bracelet Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=2</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/tanzeela.jpeg</image:loc>
+      <image:title>The Flutter Bracelet - Custom Name Bracelet Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=3</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/bracelet.jpeg</image:loc>
+      <image:title>Soulmate Bracelet - Couple Bracelet with Name Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=4</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/lovcus-handmade-bead-bracelet0005.jpeg</image:loc>
+      <image:title>Green and Champagne Crystals - Handcrafted Jewelry Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=5</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/tooba.jpeg</image:loc>
+      <image:title>The Flutter Bracelet Custom - Personalized Name Bracelet</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=6</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/lovcus-handmade-bracelet-gift007.jpg</image:loc>
+      <image:title>Custom Beaded Crystal with Copper Clasp - LOVCUS Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=7</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/lovcus-fashion-beaded-bracelet008.jpg</image:loc>
+      <image:title>Crystal Floral Cuff Bracelet - Handmade Jewelry Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=8</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/sweetheart-crystal.jpeg</image:loc>
+      <image:title>Sweetheart Crystal - Custom Charm Bracelet Stack Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=9</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/handmade-crystal-bracelet-trendy-jewelry-gift-for-her.jpeg</image:loc>
+      <image:title>Emerald Sparkle Crystal and Pearl Woven Bracelet - Gift for Her Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=10</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/blue-ombre-beaded-bracelet.jpeg</image:loc>
+      <image:title>Blue Ombre Beaded Bracelet - Handmade Jewelry LOVCUS</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/product.html?id=11</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lovcus.store/images/midnight-blue-crystal-set-bead-handmade-jewelry.jpeg</image:loc>
+      <image:title>Midnight Blue Crystal Full Set - Luxury Handmade Jewelry Pakistan</image:title>
+    </image:image>
+  </url>
 
 </urlset>
