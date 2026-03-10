@@ -396,10 +396,11 @@ function loadProductDetail() {
     if (product) {
         // Fix 1: Dynamic Meta Title
         document.title = `${product.name} | PKR ${product.price} | LOVCUS`;
-        const canonicalEl = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+        const canonicalEl = document.getElementById('canonical-tag') || document.createElement('link');
+        canonicalEl.id = 'canonical-tag';
         canonicalEl.rel = 'canonical';
         canonicalEl.href = `https://lovcus.store/product.html?id=${productId}`;
-        document.head.appendChild(canonicalEl);
+        if (!canonicalEl.parentNode) document.head.appendChild(canonicalEl);
 
         let metaDesc = document.querySelector('meta[name="description"]');
         if (!metaDesc) {
@@ -408,6 +409,23 @@ function loadProductDetail() {
             document.head.appendChild(metaDesc);
         }
         metaDesc.content = `Buy ${product.name} for PKR ${product.price}. Handmade with love by LOVCUS Pakistan.`;
+
+        // Update static fallback elements so Google eventually learns the real content
+        const staticH1 = document.getElementById('product-h1');
+        if (staticH1) staticH1.textContent = product.name;
+        const staticDesc = document.getElementById('product-desc-static');
+        if (staticDesc) staticDesc.textContent = product.description.substring(0, 200);
+
+        const ogUpdates = {
+            'og-title': `${product.name} | LOVCUS Pakistan`,
+            'og-desc': `Buy ${product.name} for PKR ${product.price}. ${product.description.substring(0, 100)}`,
+            'og-image': `https://lovcus.store/${displayImage}`,
+            'og-url': `https://lovcus.store/product.html?id=${product.id}`
+        };
+        Object.entries(ogUpdates).forEach(([id, content]) => {
+            const el = document.getElementById(id);
+            if (el) el.content = content;
+        });
 
         // Fix 2: Refined Product Schema Markup
         const schema = {
