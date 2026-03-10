@@ -377,14 +377,19 @@ function doLogout(){ me=null; document.getElementById('login-screen').style.disp
 
 // LOAD
 async function loadData(){
-  const [[o],[p],[r],[t]] = await Promise.all([
-    db.from('orders').select('*').order('created_at',{ascending:false}),
-    db.from('products').select('*').order('created_at',{ascending:false}),
-    db.from('reviews').select('*').order('created_at',{ascending:false}),
-    me.role==='superadmin'?db.from('team').select('*'):Promise.resolve({data:[]})
-  ]);
-  state.orders=o.data||[]; state.prods=p.data||[]; state.revs=r.data||[]; state.team=t.data||[];
-  renderDashboard(); filterOrders(); renderProducts(); renderCustomers(); renderReviews(); if(me.role==='superadmin') renderTeam();
+  try {
+    const [o, p, r, t] = await Promise.all([
+      db.from('orders').select('*').order('created_at',{ascending:false}),
+      db.from('products').select('*').order('created_at',{ascending:false}),
+      db.from('reviews').select('*').order('created_at',{ascending:false}),
+      me.role==='superadmin'?db.from('team').select('*'):Promise.resolve({data:[]})
+    ]);
+    state.orders=o.data||[]; state.prods=p.data||[]; state.revs=r.data||[]; state.team=t.data||[];
+    renderDashboard(); filterOrders(); renderProducts(); renderCustomers(); renderReviews();
+    if(me.role==='superadmin') renderTeam();
+  } catch(err) {
+    console.error('loadData error:', err);
+  }
 }
 
 // DASHBOARD
