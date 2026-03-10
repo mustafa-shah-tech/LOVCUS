@@ -319,7 +319,8 @@
 <script>
 const S_URL = "https://gbxvnnkkymtlskpgfpei.supabase.co";
 const S_KEY = "sb_publishable_5gFdDNycdvnVZwIl-ZM9fQ_CCsKkGDM";
-const db = window.supabase.createClient(S_URL, S_KEY);
+let db;
+try { db = window.supabase.createClient(S_URL, S_KEY); } catch(e) { console.error('Supabase failed to load:', e); }
 let me=null, charts={};
 let state={ orders:[], prods:[], revs:[], team:[] };
 
@@ -334,27 +335,27 @@ function nav(p){
 
 // AUTH
 async function doLogin(){
+  if(!db){ alert('Database connection failed. Please refresh the page and try again.'); return; }
   const u=document.getElementById('l-user').value.trim(), p=document.getElementById('l-pass').value;
   document.getElementById('lerr').style.display='none';
   document.getElementById('ldberr').style.display='none';
-  document.getElementById('l-setup-banner').style.display='none';
-  
-  // First, explicitly check if the table exists by doing a generic select
-  const probe = await db.from('team').select('id').limit(1);
-  if(probe.error && (probe.error.code === '42P01' || probe.error.code === 'PGRST205')) {
+
+  const {data, error} = await db.from('team').select('*').eq('username',u).eq('password',p).maybeSingle();
+
+  if(error){
     document.getElementById('ldberr').style.display='block';
-    document.getElementById('l-setup-banner').style.display='block';
     return;
   }
-  
-  const {data} = await db.from('team').select('*').eq('username',u).eq('password',p).maybeSingle();
-  
   if(data){
-    me=data; document.getElementById('login-screen').style.display='none'; document.getElementById('app').style.display='block';
+    me=data;
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='block';
     document.getElementById('user-role').innerText=me.role;
     if(me.role==='superadmin') document.getElementById('team-nav').style.display='block';
     loadData();
-  } else document.getElementById('lerr').style.display='block';
+  } else {
+    document.getElementById('lerr').style.display='block';
+  }
 }
 function doLogout(){ me=null; document.getElementById('login-screen').style.display='flex'; document.getElementById('app').style.display='none'; }
 
