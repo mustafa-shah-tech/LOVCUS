@@ -315,6 +315,13 @@
   <div class="fg"><label>Full Name</label><input class="fi" id="a-name"/></div>
   <div class="fg"><label>Username</label><input class="fi" id="a-user"/></div>
   <div class="fg"><label>Password</label><input class="fi" type="password" id="a-pass"/></div>
+  <div class="fg"><label>Role</label>
+    <select class="fi" id="a-role">
+      <option value="admin">Admin</option>
+      <option value="superadmin">⭐ Super Admin (transfers your role)</option>
+    </select>
+    <small style="color:var(--muted);font-size:.7rem;margin-top:4px;display:block;">Selecting Super Admin will demote YOU to Admin.</small>
+  </div>
   <div style="text-align:right;margin-top:15px;"><button class="btn bg2" onclick="closeM('m-admin')">Cancel</button> <button class="btn bp" onclick="createAdmin()">Create</button></div>
 </div></div>
 
@@ -558,14 +565,37 @@ async function toggleRev(id, val){ await db.from('reviews').update({approved:val
 // TEAM
 function renderTeam(){
   document.getElementById('team-tb').innerHTML=state.team.map(t=>`<tr>
-    <td><b>${t.full_name}</b></td><td>${t.username}</td><td><span class="badge ${t.role==='superadmin'?'bg':'bgo'}">${t.role}</span></td><td>${new Date(t.created_at).toLocaleDateString()}</td>
-    <td>${t.role!=='superadmin'?`<button class="btn bd" onclick="delAdmin(${t.id})">Delete</button>`:''}</td>
+    <td><b>${t.full_name}</b></td><td>${t.username}</td>
+    <td><span class="badge ${t.role==='superadmin'?'bg':'bgo'}">${t.role==='superadmin'?'⭐ Super Admin':'Admin'}</span></td>
+    <td>${new Date(t.created_at).toLocaleDateString()}</td>
+    <td style="display:flex;gap:6px;">
+      ${t.role!=='superadmin'?`<button class="btn bg2" style="font-size:.75rem;" onclick="promoteToSuperAdmin(${t.id},'${t.full_name}')">⭐ Promote</button>`:''}
+      ${t.id!==me.id?`<button class="btn bd" onclick="delAdmin(${t.id})">Delete</button>`:''}
+    </td>
   </tr>`).join('');
 }
-function openAdminModal(){['a-name','a-user','a-pass'].forEach(x=>document.getElementById(x).value=''); document.getElementById('m-admin').style.display='flex';}
+function openAdminModal(){['a-name','a-user','a-pass'].forEach(x=>document.getElementById(x).value=''); document.getElementById('a-role').value='admin'; document.getElementById('m-admin').style.display='flex';}
 async function createAdmin(){
-  await db.from('team').insert([{full_name:document.getElementById('a-name').value, username:document.getElementById('a-user').value, password:document.getElementById('a-pass').value, role:'admin'}]);
+  const role = document.getElementById('a-role').value;
+  if(role==='superadmin'){
+    const confirmed = confirm(`⚠️ Creating a Super Admin will demote YOU (${me.full_name}) to Admin.\n\nAre you sure?`);
+    if(!confirmed) return;
+    // Demote current super admin to admin first
+    await db.from('team').update({role:'admin'}).eq('id', me.id);
+  }
+  await db.from('team').insert([{full_name:document.getElementById('a-name').value, username:document.getElementById('a-user').value, password:document.getElementById('a-pass').value, role}]);
   closeM('m-admin'); loadData();
+}
+async function promoteToSuperAdmin(id, name){
+  if(me.role!=='superadmin'){ alert('Only a Super Admin can do this.'); return; }
+  const confirmed = confirm(`⚠️ Promote "${name}" to Super Admin?\nThis will demote YOU (${me.full_name}) to Admin.\n\nAre you sure?`);
+  if(!confirmed) return;
+  // Demote current super admin
+  await db.from('team').update({role:'admin'}).eq('id', me.id);
+  // Promote the selected admin
+  await db.from('team').update({role:'superadmin'}).eq('id', id);
+  alert('Role transferred. You are now an Admin. Please log in again.');
+  doLogout();
 }
 async function delAdmin(id){ if(confirm('Delete admin?')){ await db.from('team').delete().eq('id',id); loadData(); } }
 
