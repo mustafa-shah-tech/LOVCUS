@@ -106,7 +106,7 @@
       <h3 style="color:var(--accent);font-size:1rem;">Supabase Database Setup</h3>
       <p style="font-size:.8rem;color:var(--muted);margin-bottom:10px;">If this is your first time logging in, you must run these commands in your Supabase SQL Editor to create the Team Table and add the default Super Admin via these commands:</p>
       <code>CREATE TABLE IF NOT EXISTS orders (id serial primary key, customer_name text, items text, total numeric, status text default 'pending', notes text, created_at timestamptz default now());</code>
-      <code>CREATE TABLE IF NOT EXISTS products (id serial primary key, name text, price numeric, category text, image text, desc text, stock int default 0, created_at timestamptz default now());</code>
+      <code>CREATE TABLE IF NOT EXISTS products (id serial primary key, name text, price numeric, category text, image text, description text, stock int default 0, created_at timestamptz default now());</code>
       <code>CREATE TABLE IF NOT EXISTS reviews (id serial primary key, productId int, name text, rating int, text text, approved boolean default true, created_at timestamptz default now());</code>
       <code>CREATE TABLE IF NOT EXISTS team (id serial primary key, full_name text, username text unique, password text, role text default 'admin', created_at timestamptz default now());</code>
       <code>INSERT INTO team (full_name, username, password, role) VALUES ('Owner', 'superadmin', 'lovcus@super2024', 'superadmin') ON CONFLICT DO NOTHING;</code>
@@ -457,9 +457,9 @@ function renderProducts(){
   </tr>`).join('') || `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px;">No products found.</td></tr>`;
 }
 function openProdModal(){['p-id','p-name','p-price','p-stock','p-category','p-image','p-desc'].forEach(x=>document.getElementById(x).value=''); document.getElementById('p-stock').value='10'; document.getElementById('m-prod').style.display='flex';}
-function editProd(id){ const p=state.prods.find(x=>x.id==id); document.getElementById('p-id').value=p.id; document.getElementById('p-name').value=p.name; document.getElementById('p-price').value=p.price; document.getElementById('p-stock').value=p.stock||0; document.getElementById('p-category').value=p.category; document.getElementById('p-image').value=p.image; document.getElementById('p-desc').value=p.desc; document.getElementById('m-prod').style.display='flex'; }
+function editProd(id){ const p=state.prods.find(x=>x.id==id); document.getElementById('p-id').value=p.id; document.getElementById('p-name').value=p.name; document.getElementById('p-price').value=p.price; document.getElementById('p-stock').value=p.stock||0; document.getElementById('p-category').value=p.category; document.getElementById('p-image').value=p.image; document.getElementById('p-desc').value=p.description||''; document.getElementById('m-prod').style.display='flex'; }
 async function saveProduct(){
-  const id=document.getElementById('p-id').value, d={name:document.getElementById('p-name').value, price:parseFloat(document.getElementById('p-price').value), stock:parseInt(document.getElementById('p-stock').value), category:document.getElementById('p-category').value, image:document.getElementById('p-image').value, desc:document.getElementById('p-desc').value};
+  const id=document.getElementById('p-id').value, d={name:document.getElementById('p-name').value, price:parseFloat(document.getElementById('p-price').value), stock:parseInt(document.getElementById('p-stock').value), category:document.getElementById('p-category').value, image:document.getElementById('p-image').value, description:document.getElementById('p-desc').value};
   if(id) await db.from('products').update(d).eq('id',id); else await db.from('products').insert([d]);
   closeM('m-prod'); loadData();
 }
