@@ -469,14 +469,6 @@ function loadProductDetail() {
         schemaScript.type = 'application/ld+json';
         schemaScript.text = JSON.stringify(schema);
         document.head.appendChild(schemaScript);
-
-        let displayImage;
-        if (product.images && product.images.length > 0) {
-            displayImage = product.images[0];
-        } else {
-            displayImage = product.image;
-        }
-
         // Escape quotes for the addToCart function arguments
         const safeName = product.name.replace(/'/g, "\\'");
         const safeImage = displayImage.replace(/'/g, "\\'");
