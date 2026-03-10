@@ -427,6 +427,13 @@ function loadProductDetail() {
         const staticDesc = document.getElementById('product-desc-static');
         if (staticDesc) staticDesc.textContent = product.description.substring(0, 200);
 
+        let displayImage;
+        if (product.images && product.images.length > 0) {
+            displayImage = product.images[0];
+        } else {
+            displayImage = product.image;
+        }
+
         const ogUpdates = {
             'og-title': `${product.name} | LOVCUS Pakistan`,
             'og-desc': `Buy ${product.name} for PKR ${product.price}. ${product.description.substring(0, 100)}`,
