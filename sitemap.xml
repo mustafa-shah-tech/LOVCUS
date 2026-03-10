@@ -1,37 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- MAIN PAGES -->
   <url>
     <loc>https://lovcus.store/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://lovcus.store/shop.html</loc>
-  </url>
-  
-  <url>
-    <loc>https://lovcus.store/about.html</loc>
-  </url>
-  
-  <url>
-    <loc>https://lovcus.store/contact.html</loc>
-  </url>
-  
-  <url>
-    <loc>https://lovcus.store/policy.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
-  <!-- Product Pages -->
-  <url><loc>https://lovcus.store/product.html?id=1</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=2</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=3</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=4</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=5</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=6</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=7</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=8</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=9</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=10</loc></url>
-  <url><loc>https://lovcus.store/product.html?id=11</loc></url>
+  <url>
+    <loc>https://lovcus.store/about.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/contact.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://lovcus.store/policy.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- PRODUCT PAGES -->
+  <url><loc>https://lovcus.store/product.html?id=1</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=2</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=3</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=4</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=5</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=6</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=7</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=8</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=9</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=10</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lovcus.store/product.html?id=11</loc><lastmod>2026-03-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
 </urlset>
