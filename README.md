@@ -19,9 +19,6 @@ LOVCUS is a premier handmade jewelry brand based in Malakand, KPK, Pakistan. We 
 ## 🔗 Live Demo
 Visit our live store: [**https://lovcus.store**](https://lovcus.store)
 
-## 📸 Screenshots
-<!-- Add screenshots here -->
-
 ## 🛠️ Tech Stack
 
 | Technology | Description |
