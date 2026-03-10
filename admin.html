@@ -95,7 +95,7 @@
     <div class="lbrand">LOVCUS</div>
     <div class="lsub">Administration</div>
     <input class="linput" type="text" id="l-user" placeholder="Username" autocomplete="off"/>
-    <input class="linput" type="password" id="l-pass" placeholder="Password"/>
+    <input class="linput" type="password" id="l-pass" placeholder="Password" maxlength="100"/>
     <button class="lbtn" onclick="doLogin()">Sign In</button>
     <div class="lerr" id="lerr">Invalid credentials.</div>
     <div class="lerr" id="ldberr" style="color:var(--danger);font-size:.75rem;margin-top:10px;display:none;">Cannot connect to database. Please check your Supabase configuration.</div>
@@ -315,7 +315,7 @@
   <input type="hidden" id="a-id"/>
   <div class="fg"><label>Full Name</label><input class="fi" id="a-name"/></div>
   <div class="fg"><label>Username</label><input class="fi" id="a-user"/></div>
-  <div class="fg"><label>Password</label><input class="fi" type="password" id="a-pass"/></div>
+  <div class="fg"><label>Password</label><input class="fi" type="password" id="a-pass" maxlength="100"/></div>
   <div class="fg"><label>Role</label>
     <select class="fi" id="a-role">
       <option value="admin">Admin</option>
