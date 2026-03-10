@@ -273,7 +273,14 @@
   <div class="m-title" id="m-prod-title">Add Product</div>
   <input type="hidden" id="p-id"/><div class="fg"><label>Name</label><input class="fi" id="p-name"/></div>
   <div style="display:flex;gap:10px;"><div class="fg" style="flex:1"><label>Price</label><input type="number" class="fi" id="p-price"/></div><div class="fg" style="flex:1"><label>Stock</label><input type="number" class="fi" id="p-stock"/></div></div>
-  <div class="fg"><label>Category</label><input class="fi" id="p-category" placeholder="bracelet"/></div>
+  <div class="fg"><label>Category</label><select class="fi" id="p-category">
+    <option value="">-- Select Category --</option>
+    <option value="bracelet">Bracelet</option>
+    <option value="custom-bracelet">Custom Bracelet</option>
+    <option value="ring">Ring</option>
+    <option value="necklace">Necklace</option>
+    <option value="full set">Full Set</option>
+  </select></div>
   <div class="fg">
     <label>Product Image</label>
     <div style="border:2px dashed var(--border);border-radius:10px;padding:16px;text-align:center;background:var(--bg);">
