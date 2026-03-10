@@ -343,7 +343,7 @@ async function doLogin(){
   
   // First, explicitly check if the table exists by doing a generic select
   const probe = await db.from('team').select('id').limit(1);
-  if(probe.error && probe.error.code === '42P01') {
+  if(probe.error && (probe.error.code === '42P01' || probe.error.code === 'PGRST205')) {
     document.getElementById('ldberr').style.display='block';
     document.getElementById('l-setup-banner').style.display='block';
     return;
