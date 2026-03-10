@@ -141,6 +141,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadProductDetail();
 });
 
+// --- UTILS ---
+function sanitizeHTML(str) {
+    if (!str) return '';
+    return str.toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 // --- MENU TOGGLE ---
 function toggleMenu() {
     const navbar = document.getElementById("navbar");
@@ -323,7 +334,7 @@ function loadShop() {
             p.category.toLowerCase().includes(lowerQuery)
         );
         const title = document.querySelector('.section-title');
-        if (title) title.innerHTML = `Results for "${searchQuery}" <br> <a href="shop.html" style="font-size:0.8rem; color:var(--accent-color)">(Clear Search)</a>`;
+        if (title) title.innerHTML = `Results for "${sanitizeHTML(searchQuery)}" <br> <a href="shop.html" style="font-size:0.8rem; color:var(--accent-color)">(Clear Search)</a>`;
     }
 
     if (displayProducts.length === 0) {
@@ -542,10 +553,10 @@ async function renderReviews(productId) {
     reviewsList.innerHTML = reviews.map(review => `
         <div class="review-card">
             <div class="review-header">
-                <span class="review-name">${review.name}</span>
+                <span class="review-name">${sanitizeHTML(review.name)}</span>
                 <span class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</span>
             </div>
-            <p class="review-text">"${review.text}"</p>
+            <p class="review-text">"${sanitizeHTML(review.text)}"</p>
         </div>
     `).join('');
 }
@@ -572,7 +583,7 @@ async function handleReviewSubmit(event) {
     // Save to Supabase
     const { error } = await _supabase
         .from('reviews')
-        .insert([{ productId, name, rating, text }]);
+        .insert([{ productId, name: sanitizeHTML(name), rating, text: sanitizeHTML(text) }]);
 
     if (error) {
         // Silently fail or use toast message

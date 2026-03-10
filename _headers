@@ -23,3 +23,6 @@
 
 /google1282e319a87fc218.html
   X-Robots-Tag: noindex, nofollow
+
+/.well-known/security.txt
+  Content-Type: text/plain

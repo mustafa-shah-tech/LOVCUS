@@ -9,6 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
   <style>
     :root{
       --bg:#fff8f6;--surface:#fff;--card:#F7D1D3;--border:#e6babd;
@@ -260,6 +262,17 @@
 
       <!-- TEAM -->
       <div class="page" id="pg-team">
+        <div style="background-color: #ffebee; border-left: 5px solid var(--danger); padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+          <h4 style="color: var(--danger); margin-bottom: 5px; font-family: var(--font-b); display: flex; align-items: center; gap: 8px;">
+            ⚠️ Critical Security Notice: Supabase RLS
+          </h4>
+          <p style="font-size: 0.9rem; color: #4a2b2d; line-height: 1.5; margin-bottom: 10px;">
+            Row Level Security (RLS) is currently <strong>disabled</strong> or misconfigured on your Supabase project. This leaves the database vulnerable to unauthorized data modification.
+          </p>
+          <p style="font-size: 0.85rem; color: #4a2b2d;">
+            <strong style="color: var(--danger);">Action Required:</strong> Log in to your Supabase Dashboard > Authentication > Policies, and enable RLS on the <code>team</code>, <code>orders</code>, and <code>products</code> tables immediately.
+          </p>
+        </div>
         <button class="btn bp" onclick="openAdminModal()" style="margin-bottom:15px;">+ Add Admin</button>
         <div class="table-wrap">
           <table>
@@ -368,17 +381,62 @@ function nav(p){
 // AUTH
 async function doLogin(){
   if(!db){ alert('Database connection failed. Please refresh the page and try again.'); return; }
+  const btn = document.getElementById('login-btn');
+  const msg = document.getElementById('lockout-msg');
   const u=document.getElementById('l-user').value.trim(), p=document.getElementById('l-pass').value;
+  
+  // 1. Brute Force Lockout Check
+  const lockoutUntil = localStorage.getItem('lovcus_admin_lockout');
+  if (lockoutUntil && Date.now() < parseInt(lockoutUntil)) {
+    const minLeft = Math.ceil((parseInt(lockoutUntil) - Date.now()) / 60000);
+    msg.innerText = `Account locked due to too many failed attempts. Try again in ${minLeft} minutes.`;
+    msg.style.display = 'block';
+    return;
+  }
+
   document.getElementById('lerr').style.display='none';
   document.getElementById('ldberr').style.display='none';
+  msg.style.display = 'none';
 
-  const {data, error} = await db.from('team').select('*').eq('username',u).eq('password',p).maybeSingle();
+  // 2. Fetch by username ONLY
+  const {data, error} = await db.from('team').select('*').eq('username',u).maybeSingle();
 
   if(error){
     document.getElementById('ldberr').style.display='block';
     return;
   }
-  if(data){
+  
+  const finishFailedLogin = () => {
+      document.getElementById('lerr').style.display='block';
+      let attempts = parseInt(localStorage.getItem('lovcus_admin_attempts') || '0');
+      attempts++;
+      localStorage.setItem('lovcus_admin_attempts', attempts);
+      
+      if (attempts >= 5) {
+          const lockTime = Date.now() + 15 * 60 * 1000;
+          localStorage.setItem('lovcus_admin_lockout', lockTime);
+          msg.innerText = `Account locked due to too many failed attempts. Try again in 15 minutes.`;
+          msg.style.display = 'block';
+          document.getElementById('lerr').style.display='none';
+      }
+  };
+
+  if(!data) { finishFailedLogin(); return; }
+
+  // 3. Bcrypt Compare / Plaintext Fallback Transition
+  let isValid = false;
+  if(data.password.startsWith('$2a$') || data.password.startsWith('$2b$')) {
+      if(typeof dcodeIO !== 'undefined' && dcodeIO.bcrypt) {
+         isValid = dcodeIO.bcrypt.compareSync(p, data.password);
+      }
+  } else {
+      // Legacy fallback (User must run SQL command to permanently erase this path!)
+      if(p === data.password) isValid = true;
+  }
+
+  if(isValid){
+    localStorage.removeItem('lovcus_admin_attempts');
+    localStorage.removeItem('lovcus_admin_lockout');
     me=data;
     document.getElementById('login-screen').style.display='none';
     document.getElementById('app').style.display='block';
@@ -386,7 +444,7 @@ async function doLogin(){
     if(me.role==='superadmin') document.getElementById('team-nav').style.display='block';
     loadData();
   } else {
-    document.getElementById('lerr').style.display='block';
+    finishFailedLogin();
   }
 }
 function doLogout(){ me=null; document.getElementById('login-screen').style.display='flex'; document.getElementById('app').style.display='none'; }
@@ -559,14 +617,14 @@ function renderCustomers(){
   });
   const arr=Object.keys(map).map(k=>({name:k, ...map[k]})).sort((a,b)=>b.last-a.last);
   document.getElementById('cust-tb').innerHTML=arr.map(c=>`<tr>
-    <td><b>${c.name}</b></td><td>PKR ${c.spent.toLocaleString()}</td><td><span class="badge bgo">${c.qty} Orders</span></td><td>${c.last.toLocaleDateString()}</td>
+    <td><b>${c.name.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</b></td><td>PKR ${c.spent.toLocaleString()}</td><td><span class="badge bgo">${c.qty} Orders</span></td><td>${c.last.toLocaleDateString()}</td>
     <td><button class="btn bg2" onclick="viewCust('${c.name.replace(/'/g,'\\')}')">View History</button></td>
   </tr>`).join('') || `<tr><td colspan="5" style="text-align:center;">No customers.</td></tr>`;
 }
 function viewCust(name){
   const h=state.orders.filter(x=>x.customer_name===name).sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
   document.getElementById('h-name').innerText=name+' Order History';
-  document.getElementById('h-tb').innerHTML=`<tr><th>ID</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr>` + h.map(o=>`<tr><td>#${o.id}</td><td style="font-size:.7rem;">${o.items}</td><td>PKR ${o.total}</td><td>${o.status}</td><td>${new Date(o.created_at).toLocaleDateString()}</td></tr>`).join('');
+  document.getElementById('h-tb').innerHTML=`<tr><th>ID</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr>` + h.map(o=>`<tr><td>#${o.id}</td><td style="font-size:.7rem;">${o.items.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td><td>PKR ${o.total}</td><td>${o.status.replace(/</g,'&lt;')}</td><td>${new Date(o.created_at).toLocaleDateString()}</td></tr>`).join('');
   document.getElementById('m-history').style.display='flex';
 }
 
@@ -596,20 +654,35 @@ function renderTeam(){
     </td>
   </tr>`).join('');
 }
-function openAdminModal(){['a-id','a-name','a-user','a-pass'].forEach(x=>document.getElementById(x).value=''); document.getElementById('m-admin-title').innerText='Add Admin'; document.getElementById('a-role').value='admin'; document.getElementById('m-admin').style.display='flex';}
+function openAdminModal(){['a-id','a-name','a-user','a-pass'].forEach(x=>document.getElementById(x).value=''); document.getElementById('m-admin-title').innerText='Add Admin'; document.getElementById('a-role').value='admin'; document.getElementById('a-pass').placeholder='Enter password'; document.getElementById('m-admin').style.display='flex';}
 function editAdmin(id){
   const t=state.team.find(x=>x.id==id);
   document.getElementById('a-id').value=t.id;
   document.getElementById('a-name').value=t.full_name;
   document.getElementById('a-user').value=t.username;
-  document.getElementById('a-pass').value=t.password;
+  document.getElementById('a-pass').value='';
+  document.getElementById('a-pass').placeholder='Leave blank to keep current';
   document.getElementById('a-role').value=t.role;
   document.getElementById('m-admin-title').innerText='Edit Admin Profile';
   document.getElementById('m-admin').style.display='flex';
 }
 async function saveAdmin(){
   const id=document.getElementById('a-id').value, role=document.getElementById('a-role').value;
-  const d={full_name:document.getElementById('a-name').value, username:document.getElementById('a-user').value, password:document.getElementById('a-pass').value, role};
+  const rawPass=document.getElementById('a-pass').value.trim();
+  
+  const d={full_name:document.getElementById('a-name').value, username:document.getElementById('a-user').value, role};
+
+  if (rawPass) {
+      if(typeof dcodeIO !== 'undefined' && dcodeIO.bcrypt) {
+          d.password = dcodeIO.bcrypt.hashSync(rawPass, 10);
+      } else {
+          alert("Encryption failed. Passwords cannot be saved securely right now.");
+          return;
+      }
+  } else if (!id) {
+      alert("A password is required for new admin accounts.");
+      return;
+  }
   
   if(role==='superadmin' && (id!=me.id)){
     const confirmed = confirm(`⚠️ Setting a different Super Admin will demote YOU (${me.full_name}) to Admin.\n\nAre you sure?`);
@@ -619,12 +692,8 @@ async function saveAdmin(){
   
   if(id) await db.from('team').update(d).eq('id',id); else await db.from('team').insert([d]);
   
-  if(role==='superadmin' && id==me.id && d.role!=='superadmin'){
-     // self-demotion case or something similar, but logic above handles it.
-  }
-
   closeM('m-admin'); loadData();
-  if(id == me.id && (d.username !== me.username || d.password !== me.password || d.role !== me.role)){
+  if(id == me.id && (d.username !== me.username || rawPass || d.role !== me.role)){
     alert('Your profile was updated. Please log in again.');
     doLogout();
   }
