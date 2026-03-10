@@ -341,13 +341,15 @@ async function doLogin(){
   document.getElementById('ldberr').style.display='none';
   document.getElementById('l-setup-banner').style.display='none';
   
-  const {data, error} = await db.from('team').select('*').eq('username',u).eq('password',p).single();
-  
-  if(error && error.code === '42P01') {
+  // First, explicitly check if the table exists by doing a generic select
+  const probe = await db.from('team').select('id').limit(1);
+  if(probe.error && probe.error.code === '42P01') {
     document.getElementById('ldberr').style.display='block';
     document.getElementById('l-setup-banner').style.display='block';
     return;
   }
+  
+  const {data} = await db.from('team').select('*').eq('username',u).eq('password',p).maybeSingle();
   
   if(data){
     me=data; document.getElementById('login-screen').style.display='none'; document.getElementById('app').style.display='block';
