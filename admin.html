@@ -287,7 +287,18 @@
   <input type="hidden" id="p-id"/><div class="fg"><label>Name</label><input class="fi" id="p-name"/></div>
   <div style="display:flex;gap:10px;"><div class="fg" style="flex:1"><label>Price</label><input type="number" class="fi" id="p-price"/></div><div class="fg" style="flex:1"><label>Stock</label><input type="number" class="fi" id="p-stock"/></div></div>
   <div class="fg"><label>Category</label><input class="fi" id="p-category" placeholder="bracelet"/></div>
-  <div class="fg"><label>Image URL</label><input class="fi" id="p-image"/></div>
+  <div class="fg">
+    <label>Product Image</label>
+    <div style="border:2px dashed var(--border);border-radius:10px;padding:16px;text-align:center;background:var(--bg);">
+      <input type="file" id="p-img-file" accept="image/*" style="display:none;" onchange="handleImageUpload(event)"/>
+      <img id="p-img-preview" src="" alt="" style="display:none;max-height:120px;border-radius:8px;margin-bottom:10px;object-fit:cover;"/>
+      <div>
+        <button type="button" class="btn bg2" onclick="document.getElementById('p-img-file').click()" style="margin-bottom:6px;">📷 Choose Image</button>
+        <div id="p-img-status" style="font-size:.75rem;color:var(--muted);margin-top:4px;">No image selected</div>
+      </div>
+    </div>
+    <input type="hidden" id="p-image"/>
+  </div>
   <div class="fg"><label>Description</label><textarea class="fi" id="p-desc" style="resize:vertical;min-height:80px;"></textarea></div>
   <div style="text-align:right;margin-top:15px;"><button class="btn bg2" onclick="closeM('m-prod')">Cancel</button> <button class="btn bp" onclick="saveProduct()">Save</button></div>
 </div></div>
@@ -456,8 +467,49 @@ function renderProducts(){
     <td><button class="btn bg2" onclick="editProd(${p.id})">Edit</button> <button class="btn bd" onclick="delProd(${p.id})">Del</button></td>
   </tr>`).join('') || `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px;">No products found.</td></tr>`;
 }
-function openProdModal(){['p-id','p-name','p-price','p-stock','p-category','p-image','p-desc'].forEach(x=>document.getElementById(x).value=''); document.getElementById('p-stock').value='10'; document.getElementById('m-prod').style.display='flex';}
-function editProd(id){ const p=state.prods.find(x=>x.id==id); document.getElementById('p-id').value=p.id; document.getElementById('p-name').value=p.name; document.getElementById('p-price').value=p.price; document.getElementById('p-stock').value=p.stock||0; document.getElementById('p-category').value=p.category; document.getElementById('p-image').value=p.image; document.getElementById('p-desc').value=p.description||''; document.getElementById('m-prod').style.display='flex'; }
+function openProdModal(){
+  ['p-id','p-name','p-price','p-stock','p-category','p-image','p-desc'].forEach(x=>document.getElementById(x).value='');
+  document.getElementById('p-stock').value='10';
+  document.getElementById('p-img-preview').style.display='none';
+  document.getElementById('p-img-status').innerText='No image selected';
+  document.getElementById('p-img-file').value='';
+  document.getElementById('m-prod').style.display='flex';
+}
+function editProd(id){
+  const p=state.prods.find(x=>x.id==id);
+  document.getElementById('p-id').value=p.id;
+  document.getElementById('p-name').value=p.name;
+  document.getElementById('p-price').value=p.price;
+  document.getElementById('p-stock').value=p.stock||0;
+  document.getElementById('p-category').value=p.category;
+  document.getElementById('p-image').value=p.image||'';
+  document.getElementById('p-desc').value=p.description||'';
+  // Show existing image preview
+  const prev=document.getElementById('p-img-preview');
+  if(p.image){ prev.src=p.image; prev.style.display='block'; document.getElementById('p-img-status').innerText='Current image loaded'; }
+  else { prev.style.display='none'; document.getElementById('p-img-status').innerText='No image'; }
+  document.getElementById('m-prod').style.display='flex';
+}
+async function handleImageUpload(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const statusEl = document.getElementById('p-img-status');
+  const prevEl = document.getElementById('p-img-preview');
+  statusEl.innerText = '⏳ Uploading...';
+  const ext = file.name.split('.').pop();
+  const fileName = `products/${Date.now()}.${ext}`;
+  const { data, error } = await db.storage.from('product-images').upload(fileName, file, { upsert: true });
+  if(error){
+    statusEl.innerText = '❌ Upload failed: ' + error.message;
+    return;
+  }
+  const { data: urlData } = db.storage.from('product-images').getPublicUrl(fileName);
+  const publicUrl = urlData.publicUrl;
+  document.getElementById('p-image').value = publicUrl;
+  prevEl.src = publicUrl;
+  prevEl.style.display = 'block';
+  statusEl.innerText = '✅ Image uploaded!';
+}
 async function saveProduct(){
   const id=document.getElementById('p-id').value, d={name:document.getElementById('p-name').value, price:parseFloat(document.getElementById('p-price').value), stock:parseInt(document.getElementById('p-stock').value), category:document.getElementById('p-category').value, image:document.getElementById('p-image').value, description:document.getElementById('p-desc').value};
   if(id) await db.from('products').update(d).eq('id',id); else await db.from('products').insert([d]);
