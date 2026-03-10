@@ -401,8 +401,9 @@ function loadProductDetail() {
     const detailContainer = document.getElementById("product-detail-container");
     if (!detailContainer) return;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get("id");
+        const urlParams = new URLSearchParams(window.location.search);
+    let productId = urlParams.get("id");
+    if (window.STATIC_PRODUCT_ID) productId = window.STATIC_PRODUCT_ID;
     const product = products.find((p) => p.id == productId);
 
     if (product) {
@@ -411,7 +412,7 @@ function loadProductDetail() {
         const canonicalEl = document.getElementById('canonical-tag') || document.createElement('link');
         canonicalEl.id = 'canonical-tag';
         canonicalEl.rel = 'canonical';
-        canonicalEl.href = `https://lovcus.store/product.html?id=${productId}`;
+        canonicalEl.href = `https://lovcus.store/product/${product.slug}`;
         if (!canonicalEl.parentNode) document.head.appendChild(canonicalEl);
 
         let metaDesc = document.querySelector('meta[name="description"]');
@@ -432,7 +433,7 @@ function loadProductDetail() {
             'og-title': `${product.name} | LOVCUS Pakistan`,
             'og-desc': `Buy ${product.name} for PKR ${product.price}. ${product.description.substring(0, 100)}`,
             'og-image': `https://lovcus.store/${displayImage}`,
-            'og-url': `https://lovcus.store/product.html?id=${product.id}`
+            'og-url': `https://lovcus.store/product/${product.slug}`
         };
         Object.entries(ogUpdates).forEach(([id, content]) => {
             const el = document.getElementById(id);
