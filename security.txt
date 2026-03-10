@@ -1,7 +1,4 @@
-Contact: lovcus.store@gmail.com
-Encryption: https://lovcus.store/pgp-key.txt
-Acknowledgements: https://lovcus.store/hall-of-fame.html
-Preferred-Languages: en
-Canonical: https://lovcus.store/.well-known/security.txt
-Policy: https://lovcus.store/security-policy.html
-Hiring: https://lovcus.store/jobs
+Contact: mailto:lovcus.store@gmail.com
+Preferred-Languages: en, ur
+Canonical: https://lovcus.store/security.txt
+Policy: If you discover a security vulnerability in LOVCUS, please report it responsibly to our email before any public disclosure. We appreciate responsible security research.
