@@ -309,9 +309,10 @@
   <div style="text-align:right;margin-top:15px;"><button class="btn bg2" onclick="closeM('m-order')">Cancel</button> <button class="btn bp" onclick="saveOrder()">Save</button></div>
 </div></div>
 
-<!-- Add Admin -->
+<!-- Add/Edit Admin -->
 <div class="modal-overlay" id="m-admin"><div class="modal">
-  <div class="m-title">Add Admin Result</div>
+  <div class="m-title" id="m-admin-title">Add Admin Result</div>
+  <input type="hidden" id="a-id"/>
   <div class="fg"><label>Full Name</label><input class="fi" id="a-name"/></div>
   <div class="fg"><label>Username</label><input class="fi" id="a-user"/></div>
   <div class="fg"><label>Password</label><input class="fi" type="password" id="a-pass"/></div>
@@ -322,7 +323,7 @@
     </select>
     <small style="color:var(--muted);font-size:.7rem;margin-top:4px;display:block;">Selecting Super Admin will demote YOU to Admin.</small>
   </div>
-  <div style="text-align:right;margin-top:15px;"><button class="btn bg2" onclick="closeM('m-admin')">Cancel</button> <button class="btn bp" onclick="createAdmin()">Create</button></div>
+  <div style="text-align:right;margin-top:15px;"><button class="btn bg2" onclick="closeM('m-admin')">Cancel</button> <button class="btn bp" onclick="saveAdmin()">Save</button></div>
 </div></div>
 
 <!-- Customer History -->
@@ -574,22 +575,44 @@ function renderTeam(){
     <td><span class="badge ${t.role==='superadmin'?'bg':'bgo'}">${t.role==='superadmin'?'⭐ Super Admin':'Admin'}</span></td>
     <td>${new Date(t.created_at).toLocaleDateString()}</td>
     <td style="display:flex;gap:6px;">
+      <button class="btn bg2" style="font-size:.75rem;" onclick="editAdmin(${t.id})">Edit</button>
       ${t.role!=='superadmin'?`<button class="btn bg2" style="font-size:.75rem;" onclick="promoteToSuperAdmin(${t.id},'${t.full_name}')">⭐ Promote</button>`:''}
       ${t.id!==me.id?`<button class="btn bd" onclick="delAdmin(${t.id})">Delete</button>`:''}
     </td>
   </tr>`).join('');
 }
-function openAdminModal(){['a-name','a-user','a-pass'].forEach(x=>document.getElementById(x).value=''); document.getElementById('a-role').value='admin'; document.getElementById('m-admin').style.display='flex';}
-async function createAdmin(){
-  const role = document.getElementById('a-role').value;
-  if(role==='superadmin'){
-    const confirmed = confirm(`⚠️ Creating a Super Admin will demote YOU (${me.full_name}) to Admin.\n\nAre you sure?`);
+function openAdminModal(){['a-id','a-name','a-user','a-pass'].forEach(x=>document.getElementById(x).value=''); document.getElementById('m-admin-title').innerText='Add Admin'; document.getElementById('a-role').value='admin'; document.getElementById('m-admin').style.display='flex';}
+function editAdmin(id){
+  const t=state.team.find(x=>x.id==id);
+  document.getElementById('a-id').value=t.id;
+  document.getElementById('a-name').value=t.full_name;
+  document.getElementById('a-user').value=t.username;
+  document.getElementById('a-pass').value=t.password;
+  document.getElementById('a-role').value=t.role;
+  document.getElementById('m-admin-title').innerText='Edit Admin Profile';
+  document.getElementById('m-admin').style.display='flex';
+}
+async function saveAdmin(){
+  const id=document.getElementById('a-id').value, role=document.getElementById('a-role').value;
+  const d={full_name:document.getElementById('a-name').value, username:document.getElementById('a-user').value, password:document.getElementById('a-pass').value, role};
+  
+  if(role==='superadmin' && (id!=me.id)){
+    const confirmed = confirm(`⚠️ Setting a different Super Admin will demote YOU (${me.full_name}) to Admin.\n\nAre you sure?`);
     if(!confirmed) return;
-    // Demote current super admin to admin first
     await db.from('team').update({role:'admin'}).eq('id', me.id);
   }
-  await db.from('team').insert([{full_name:document.getElementById('a-name').value, username:document.getElementById('a-user').value, password:document.getElementById('a-pass').value, role}]);
+  
+  if(id) await db.from('team').update(d).eq('id',id); else await db.from('team').insert([d]);
+  
+  if(role==='superadmin' && id==me.id && d.role!=='superadmin'){
+     // self-demotion case or something similar, but logic above handles it.
+  }
+
   closeM('m-admin'); loadData();
+  if(id == me.id && (d.username !== me.username || d.password !== me.password || d.role !== me.role)){
+    alert('Your profile was updated. Please log in again.');
+    doLogout();
+  }
 }
 async function promoteToSuperAdmin(id, name){
   if(me.role!=='superadmin'){ alert('Only a Super Admin can do this.'); return; }
