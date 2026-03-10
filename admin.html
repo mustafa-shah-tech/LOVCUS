@@ -273,14 +273,16 @@
   <div class="m-title" id="m-prod-title">Add Product</div>
   <input type="hidden" id="p-id"/><div class="fg"><label>Name</label><input class="fi" id="p-name"/></div>
   <div style="display:flex;gap:10px;"><div class="fg" style="flex:1"><label>Price</label><input type="number" class="fi" id="p-price"/></div><div class="fg" style="flex:1"><label>Stock</label><input type="number" class="fi" id="p-stock"/></div></div>
-  <div class="fg"><label>Category</label><select class="fi" id="p-category">
+  <div class="fg"><label>Category</label><select class="fi" id="p-category" onchange="toggleCustomCat(this)">
     <option value="">-- Select Category --</option>
     <option value="bracelet">Bracelet</option>
     <option value="custom-bracelet">Custom Bracelet</option>
     <option value="ring">Ring</option>
     <option value="necklace">Necklace</option>
     <option value="full set">Full Set</option>
-  </select></div>
+    <option value="__custom__">✏️ Create New Category...</option>
+  </select>
+  <input class="fi" id="p-category-custom" placeholder="Type new category name..." style="display:none;margin-top:8px;"/></div>
   <div class="fg">
     <label>Product Image</label>
     <div style="border:2px dashed var(--border);border-radius:10px;padding:16px;text-align:center;background:var(--bg);">
@@ -505,8 +507,17 @@ async function handleImageUpload(event){
   prevEl.style.display = 'block';
   statusEl.innerText = '✅ Image uploaded!';
 }
+function toggleCustomCat(sel){
+  const custom = document.getElementById('p-category-custom');
+  custom.style.display = sel.value === '__custom__' ? 'block' : 'none';
+  if(sel.value !== '__custom__') custom.value = '';
+}
 async function saveProduct(){
-  const id=document.getElementById('p-id').value, d={name:document.getElementById('p-name').value, price:parseFloat(document.getElementById('p-price').value), stock:parseInt(document.getElementById('p-stock').value), category:document.getElementById('p-category').value, image:document.getElementById('p-image').value, description:document.getElementById('p-desc').value};
+  const catSel = document.getElementById('p-category');
+  const catCustom = document.getElementById('p-category-custom');
+  const category = catSel.value === '__custom__' ? catCustom.value.trim() : catSel.value;
+  if(!category){ alert('Please select or enter a category.'); return; }
+  const id=document.getElementById('p-id').value, d={name:document.getElementById('p-name').value, price:parseFloat(document.getElementById('p-price').value), stock:parseInt(document.getElementById('p-stock').value), category, image:document.getElementById('p-image').value, description:document.getElementById('p-desc').value};
   if(id) await db.from('products').update(d).eq('id',id); else await db.from('products').insert([d]);
   closeM('m-prod'); loadData();
 }
