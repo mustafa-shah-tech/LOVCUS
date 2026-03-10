@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (headerPlace) {
         headerPlace.innerHTML = `
         <header> 
-            <a href="index.html" class="logo" style="text-decoration: none;">
-                <img src="images/logo.png" alt="Logo" class="logo-img">LOVCUS
+            <a href="./" class="logo" style="text-decoration: none;">
+                <img src="images/logo.png" alt="Logo" class="logo-img" width="40" height="40">LOVCUS
             </a>
             
             <div class="header-icons">
@@ -78,9 +78,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
             </div>
 
-            <nav id="navbar">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
+            <nav class="nav-links">
+                <ul class="nav-list">
+                    <li><a href="./">Home</a></li>
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="policy.html">Policy</a></li>
