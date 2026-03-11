@@ -32,8 +32,8 @@ const staticProducts = [
 let cart = JSON.parse(localStorage.getItem('lovcus_cart')) || [];
 
 // --- SUPABASE SETUP ---
-const SUPABASE_URL = "https://gbxvnnkkymtlskpgfpei.supabase.co";
-const SUPABASE_KEY = "sb_publishable_5gFdDNycdvnVZwIl-ZM9fQ_CCsKkGDM";
+const SUPABASE_URL = "https://atsjuwrabikhhvwepxhl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_X1KAmftyXiKedePOaD_O3Q_txT105WF";
 const _supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 // Fetch products from Supabase, fall back to static list
