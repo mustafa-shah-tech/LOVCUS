@@ -533,6 +533,7 @@ async function renderReviews(productId) {
         .from('reviews')
         .select('*')
         .eq('productid', productId)
+        .eq('approved', true)
         .order('created_at', { ascending: false });
 
     if (error) {
