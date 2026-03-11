@@ -450,14 +450,9 @@ function loadProductDetail() {
             "@context": "https://schema.org/",
             "@type": "Product",
             "name": product.name,
-            "image": [displayImage],
-            "description": product.description.substring(0, 300),
-            "brand": { "@type": "Brand", "name": "LOVCUS" },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "5",
-                "reviewCount": "1"
-            },
+            "description": product.description,
+            "image": "https://lovcus.store/" + displayImage,
+            "url": "https://lovcus.store/product.html?id=" + product.id,
             "offers": {
                 "@type": "Offer",
                 "priceCurrency": "PKR",
@@ -465,10 +460,14 @@ function loadProductDetail() {
                 "availability": "https://schema.org/InStock"
             }
         };
-        const schemaScript = document.createElement('script');
-        schemaScript.type = 'application/ld+json';
+        let schemaScript = document.getElementById('product-schema');
+        if (!schemaScript) {
+            schemaScript = document.createElement('script');
+            schemaScript.id = 'product-schema';
+            schemaScript.type = 'application/ld+json';
+            document.head.appendChild(schemaScript);
+        }
         schemaScript.text = JSON.stringify(schema);
-        document.head.appendChild(schemaScript);
         // Escape quotes for the addToCart function arguments
         const safeName = product.name.replace(/'/g, "\\'");
         const safeImage = displayImage.replace(/'/g, "\\'");
