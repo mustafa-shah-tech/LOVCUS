@@ -134,11 +134,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const path = window.location.pathname;
     if (path.endsWith("index.html") || path === "/" || path.endsWith("/")) {
         loadHomeProducts(); // Loads only 8 items
-    } else {
+    } else if (path.includes("shop.html")) {
         loadShop(); // Loads ALL items (for shop.html)
+    } else if (path.includes("product.html")) {
+        loadProductDetail(); 
     }
-
-    loadProductDetail();
 });
 
 // --- UTILS ---
@@ -533,7 +533,7 @@ async function renderReviews(productId) {
     const { data, error } = await _supabase
         .from('reviews')
         .select('*')
-        .eq('productId', productId)
+        .eq('productid', productId)
         .order('created_at', { ascending: false });
 
     if (error) {
@@ -582,7 +582,7 @@ async function handleReviewSubmit(event) {
     // Save to Supabase
     const { error } = await _supabase
         .from('reviews')
-        .insert([{ productId, name: sanitizeHTML(name), rating, text: sanitizeHTML(text) }]);
+        .insert([{ productid: productId, name: sanitizeHTML(name), rating, text: sanitizeHTML(text) }]);
 
     if (error) {
         // Silently fail or use toast message

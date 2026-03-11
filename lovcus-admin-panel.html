@@ -636,11 +636,11 @@ function viewCust(name){
 
 // REVIEWS
 function renderReviews(){
-  const sums={}; state.revs.forEach(r=>{ if(!sums[r.productId]) sums[r.productId]={v:0,c:0}; sums[r.productId].v+=r.rating; sums[r.productId].c++; });
+  const sums={}; state.revs.forEach(r=>{ if(!sums[r.productid]) sums[r.productid]={v:0,c:0}; sums[r.productid].v+=r.rating; sums[r.productid].c++; });
   const avgs=Object.values(sums).map(x=>x.v/x.c); const final=avgs.length?(avgs.reduce((a,b)=>a+b,0)/avgs.length).toFixed(1):0;
   document.getElementById('rev-summary').innerText=final+' ★ (Across '+state.prods.length+' products)';
   document.getElementById('rev-tb').innerHTML=state.revs.map(r=>`<tr>
-    <td>#${r.productId}</td><td>${sanitizeHTML(r.name)}</td><td style="color:var(--gold)">${'★'.repeat(r.rating)}</td><td><i style="color:var(--muted)">"${sanitizeHTML(r.text)}"</i></td>
+    <td>#${r.productid}</td><td>${sanitizeHTML(r.name)}</td><td style="color:var(--gold)">${'★'.repeat(r.rating)}</td><td><i style="color:var(--muted)">"${sanitizeHTML(r.text)}"</i></td>
     <td>${r.approved?'<span class="badge bg">Visible</span>':'<span class="badge br">Hidden</span>'}</td>
     <td><button class="btn bg2" onclick="toggleRev(${r.id},${!r.approved})">${r.approved?'Hide':'Approve'}</button></td>
   </tr>`).join('') || `<tr><td colspan="6" style="text-align:center;">No reviews.</td></tr>`;
