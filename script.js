@@ -34,10 +34,13 @@ let cart = JSON.parse(localStorage.getItem('lovcus_cart')) || [];
 // --- SUPABASE SETUP ---
 const SUPABASE_URL = "https://gbxvnnkkymtlskpgfpei.supabase.co";
 const SUPABASE_KEY = "sb_publishable_5gFdDNycdvnVZwIl-ZM9fQ_CCsKkGDM";
-const _supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+let _supabase = null;
 
 // Fetch products from Supabase, fall back to static list
 async function fetchProducts() {
+    if (!_supabase && window.supabase) {
+        _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }
     if (!_supabase) { products = staticProducts; return; }
     const { data, error } = await _supabase.from('products').select('*').order('id', { ascending: true });
     if (error || !data || data.length === 0) {
@@ -525,6 +528,9 @@ function orderViaWhatsApp(itemName, price) {
 
 // --- REVIEWS LOGIC (Global via Supabase) ---
 async function renderReviews(productId) {
+    if (!_supabase && window.supabase) {
+        _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }
     const reviewsList = document.getElementById('reviews-list');
     if (!reviewsList || !_supabase) return;
 
@@ -562,6 +568,9 @@ async function renderReviews(productId) {
 
 async function handleReviewSubmit(event) {
     event.preventDefault();
+    if (!_supabase && window.supabase) {
+        _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }
     if (!_supabase) return;
 
     const urlParams = new URLSearchParams(window.location.search);
