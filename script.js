@@ -140,7 +140,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (path.includes("shop.html")) {
         loadShop(); // Loads ALL items (for shop.html)
     } else if (path.includes("product.html")) {
-        loadProductDetail(); 
+        loadProductDetail();
+        const productSection = document.querySelector('#product-detail-container')?.closest('.section');
+        if (productSection) productSection.classList.add('product-detail-section');
     }
 });
 
@@ -157,7 +159,7 @@ function sanitizeHTML(str) {
 
 // --- MENU TOGGLE ---
 function toggleMenu() {
-    const navbar = document.getElementById("navbar");
+    const navbar = document.querySelector(".nav-links");
     if (navbar) {
         navbar.classList.toggle("active");
     }
@@ -481,6 +483,9 @@ function loadProductDetail() {
             .replace(/\b\w/g, c => c.toUpperCase());
 
         detailContainer.innerHTML = `
+            <div class="product-breadcrumb">
+                <a href="shop.html">← Back to Shop</a>
+            </div>
             <div class="product-detail-wrap">
                 <div class="product-detail-img-col">
                     <img

@@ -1053,3 +1053,29 @@ footer {
     font-size: 1.4rem;
   }
 }
+
+/* Breadcrumb — fix 4 */
+.product-breadcrumb {
+  margin-bottom: 20px;
+}
+
+.product-breadcrumb a {
+  font-size: 0.85rem;
+  color: #944044;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: 0.2s;
+}
+
+.product-breadcrumb a:hover {
+  color: #7a3336;
+  gap: 8px;
+}
+
+/* Tighter section padding on product page — fix 5 */
+.product-detail-section {
+  padding: 24px 5% 40px;
+}
