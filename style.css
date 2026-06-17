@@ -858,3 +858,198 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* =====================================================
+   PRODUCT DETAIL PAGE — NEW LAYOUT CLASSES
+   ===================================================== */
+
+/* Two-column flex wrapper */
+.product-detail-wrap {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Left column — image */
+.product-detail-img-col {
+  flex: 0 0 45%;
+  max-width: 45%;
+}
+
+.product-detail-img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+  display: block;
+}
+
+/* Right column — info */
+.product-detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Product name */
+.product-detail-name {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2b2b2b;
+  line-height: 1.25;
+  margin: 0;
+}
+
+/* Category badge pill */
+.product-cat-badge {
+  display: inline-block;
+  background: #f7d1d3;
+  color: #944044;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* PKR + price row */
+.product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price-currency {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.price-amount {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #944044;
+  font-family: var(--font-body);
+}
+
+/* Thin divider */
+.product-divider {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 4px 0;
+}
+
+/* Collapsible description */
+.product-desc-text {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #555;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  transition: -webkit-line-clamp 0.3s;
+}
+
+.product-desc-text.expanded {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+/* "Read more / Read less" toggle button */
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #944044;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  padding: 4px 0 0;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.read-more-btn:hover {
+  color: #7a3336;
+}
+
+/* Action buttons column */
+.product-detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Outlined "Add to Cart" button variant */
+.btn-outline-accent {
+  background: #ffffff;
+  border: 2px solid #944044;
+  color: #944044;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.btn-outline-accent:hover {
+  background: #fdf0f0;
+  transform: translateY(-2px);
+}
+
+/* Filled "Buy Now" button variant */
+.btn-accent {
+  background: #944044;
+  color: #ffffff;
+  border: 2px solid #944044;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.btn-accent:hover {
+  background: #7a3336;
+  border-color: #7a3336;
+  transform: translateY(-2px);
+}
+
+/* Delivery note */
+.product-delivery-note {
+  font-size: 0.82rem;
+  color: #888;
+  margin: 0;
+}
+
+/* Mobile: stack image above info */
+@media (max-width: 768px) {
+  .product-detail-wrap {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .product-detail-img-col {
+    flex: unset;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .product-detail-img {
+    max-height: 340px;
+  }
+
+  .product-detail-name {
+    font-size: 1.5rem;
+  }
+
+  .price-amount {
+    font-size: 1.4rem;
+  }
+}

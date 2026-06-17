@@ -475,37 +475,54 @@ function loadProductDetail() {
         const safeName = product.name.replace(/'/g, "\\'");
         const safeImage = displayImage.replace(/'/g, "\\'");
 
+        // Format category: replace hyphens with spaces, capitalize each word
+        const formattedCategory = (product.category || '')
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase());
+
         detailContainer.innerHTML = `
-            <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
-                <div style="flex: 1; min-width: 300px;">
-                    <!-- Fix 3: Descriptive Image Alt Text -->
-                    <img src="${displayImage}" style="border-radius: 10px; width: 100%;" alt="${product.name} - Handmade Bracelet Pakistan">
+            <div class="product-detail-wrap">
+                <div class="product-detail-img-col">
+                    <img
+                        src="${displayImage}"
+                        class="product-detail-img"
+                        alt="${product.name} - Handmade Bracelet Pakistan"
+                    >
                 </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <h1 style="font-family: var(--font-heading); margin-bottom: 10px;">${product.name}</h1>
-                    <h2 style="color: var(--accent-color); margin-bottom: 20px;">PKR ${product.price}</h2>
-                    <div class="product-description" style="color: var(--text-color); font-size: 1rem; line-height: 1.6;">
-                    <h3 style="margin-bottom: 10px; color: var(--accent-color);">Description</h3>
-                    <p style="margin-bottom: 20px;">${product.description}</p>
-                </div>    
+                <div class="product-detail-info">
+                    <h1 class="product-detail-name">${product.name}</h1>
+
+                    <span class="product-cat-badge">${formattedCategory}</span>
+
+                    <div class="product-price-row">
+                        <span class="price-currency">PKR</span>
+                        <span class="price-amount">${product.price}</span>
+                    </div>
+
+                    <hr class="product-divider">
+
+                    <div>
+                        <p class="product-desc-text" id="product-desc-text">${product.description}</p>
+                        <button class="read-more-btn" id="read-more-btn" onclick="toggleDesc()">Read more</button>
+                    </div>
+
                     <div class="alert-box">
                         <strong>⚠️ Payment Policy:</strong> Minimum 30% advance payment required.
                     </div>
 
-                    <div style="display: flex; gap: 10px; flex-direction: column;">
-                        <!-- Add to Cart -->
-                        <button onclick="addToCart(${product.id}, '${safeName}', ${product.price}, '${safeImage}')" 
-                                class="btn" style="background: white; border: 2px solid var(--accent-color); color: var(--accent-color);">
-                            Add to Cart 🛒
-                        </button>
-                        
-                        <!-- Direct WhatsApp Order -->
-                        <button onclick="orderViaWhatsApp('${safeName}', ${product.price})" class="btn" style="width: 100%;">
-                            Buy Now (WhatsApp)
-                        </button>
+                    <div class="product-detail-actions">
+                        <button
+                            onclick="addToCart(${product.id}, '${safeName}', ${product.price}, '${safeImage}')"
+                            class="btn btn-outline-accent"
+                        >Add to Cart 🛒</button>
+
+                        <button
+                            onclick="orderViaWhatsApp('${safeName}', ${product.price})"
+                            class="btn btn-accent"
+                        >Buy Now via WhatsApp 💬</button>
                     </div>
 
-                    <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">Delivery: 3-5 Working Days </p>
+                    <p class="product-delivery-note">🚚 Delivery: 3–5 Working Days across Pakistan</p>
                 </div>
             </div>
         `;
@@ -515,6 +532,15 @@ function loadProductDetail() {
     } else {
         detailContainer.innerHTML = "<p>Product not found.</p>";
     }
+}
+
+// --- PRODUCT DESC TOGGLE ---
+function toggleDesc() {
+    const desc = document.getElementById('product-desc-text');
+    const btn  = document.getElementById('read-more-btn');
+    if (!desc) return;
+    const expanded = desc.classList.toggle('expanded');
+    if (btn) btn.textContent = expanded ? 'Read less' : 'Read more';
 }
 
 // --- WHATSAPP ORDER LOGIC ---
