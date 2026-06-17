@@ -284,10 +284,10 @@ function renderCartItems() {
         total += item.price * item.quantity;
         return `
             <div class="cart-item">
-                <img src="${item.image}" alt="${item.name}">
+                <img src="${sanitizeHTML(item.image)}" alt="${sanitizeHTML(item.name)}">
                 <div class="cart-item-details">
-                    <h4>${item.name}</h4>
-                    <p>PKR ${item.price}</p>
+                    <h4>${sanitizeHTML(item.name)}</h4>
+                    <p>PKR ${sanitizeHTML(String(item.price))}</p>
                     <div class="cart-controls">
                         <button class="qty-btn" onclick="updateItemQty(${item.id}, -1)">-</button>
                         <span>${item.quantity}</span>
@@ -360,8 +360,8 @@ function loadShop() {
         <div class="product-card">
             <img src="${displayImage}" alt="${product.name}" loading="lazy" width="300" height="300" style="object-fit: cover;">
             <div class="product-info">
-                <h4 class="product-title">${product.name}</h4>
-                <p class="product-price">PKR ${product.price}</p>
+                <h4 class="product-title">${sanitizeHTML(product.name)}</h4>
+                <p class="product-price">PKR ${sanitizeHTML(String(product.price))}</p>
                 <a href="product.html?id=${product.id}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
             </div>
         </div>
@@ -390,8 +390,8 @@ function loadHomeProducts() {
         <div class="product-card" onclick="window.location.href='product.html?id=${product.id}'" style="cursor: pointer;">
             <img src="${displayImage}" alt="${product.name}" loading="lazy" width="300" height="300" style="object-fit: cover;">
             <div class="product-info">
-                <h4 class="product-title">${product.name}</h4>
-                <p class="product-price">PKR ${product.price}</p>
+                <h4 class="product-title">${sanitizeHTML(product.name)}</h4>
+                <p class="product-price">PKR ${sanitizeHTML(String(product.price))}</p>
                 <a href="product.html?id=${product.id}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
             </div>
         </div>
@@ -666,8 +666,8 @@ function filterProducts(category) {
         <div class="product-card">
             <img src="${displayImage}" alt="${product.name}" loading="lazy" width="300" height="300" style="object-fit: cover;">
             <div class="product-info">
-                <h4 class="product-title">${product.name}</h4>
-                <p class="product-price">PKR ${product.price}</p>
+                <h4 class="product-title">${sanitizeHTML(product.name)}</h4>
+                <p class="product-price">PKR ${sanitizeHTML(String(product.price))}</p>
                 <a href="product.html?id=${product.id}" class="btn" style="margin-top:10px; font-size:0.8rem">View Details</a>
             </div>
         </div>
