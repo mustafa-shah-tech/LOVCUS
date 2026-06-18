@@ -954,14 +954,15 @@ footer {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 5;
+  line-clamp: 5; /* standard property for forward compatibility */
   -webkit-box-orient: vertical;
-  transition: -webkit-line-clamp 0.3s;
 }
 
 .product-desc-text.expanded {
   display: block;
   overflow: visible;
   -webkit-line-clamp: unset;
+  line-clamp: unset;
 }
 
 /* "Read more / Read less" toggle button */
