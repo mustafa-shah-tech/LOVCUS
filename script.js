@@ -405,7 +405,26 @@ function loadProductDetail() {
     const detailContainer = document.getElementById("product-detail-container");
     if (!detailContainer) return;
 
-            const urlParams = new URLSearchParams(window.location.search);
+    // Show skeleton immediately — before product lookup
+    detailContainer.innerHTML = `
+        <div class="product-detail-wrap skeleton-wrap">
+            <div class="product-detail-img-col">
+                <div class="skeleton skeleton-img"></div>
+            </div>
+            <div class="product-detail-info">
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-badge"></div>
+                <div class="skeleton skeleton-price"></div>
+                <div class="skeleton skeleton-line"></div>
+                <div class="skeleton skeleton-line"></div>
+                <div class="skeleton skeleton-line w60"></div>
+                <div class="skeleton skeleton-btn"></div>
+                <div class="skeleton skeleton-btn"></div>
+            </div>
+        </div>
+    `;
+
+    const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
     const product = products.find((p) => p.id == productId);
 
